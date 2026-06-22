@@ -1,0 +1,462 @@
+# ============================================================================
+# COMBAT.YML - Combat-Focused Events
+# ============================================================================
+#
+# This file contains events that modify combat mechanics, mob behavior,
+# damage immunity, and loot drops from combat.
+#
+# EVENT TYPES IN THIS FILE:
+#
+# 1. VAMPIRISM
+#    Description: Players heal when dealing damage to entities
+#    Configuration:
+#      heal-percentage: 0.25    # Percentage of damage dealt healed (0.25 = 25%)
+#
+# 2. BUFF_SPAWNED_MOBS
+#    Description: Newly spawned mobs get enhanced with effects and equipment
+#    Configuration:
+#      target-mobs:             # List of mob types to buff
+#        - ZOMBIE
+#        - SKELETON
+#      potion-effects:          # Effects to apply to mobs
+#        - type: SPEED
+#          amplifier: 1
+#      equipment:               # Equipment to give mobs
+#        helmet: IRON_HELMET
+#        chestplate: IRON_CHESTPLATE
+#        leggings: IRON_LEGGINGS
+#        boots: IRON_BOOTS
+#        weapon: IRON_SWORD
+#      equipment-drop-chance: 0.15  # Chance equipment drops (0.0-1.0)
+#
+# 3. MOB_LOOT_MULTIPLIER
+#    Description: Multiply the amount of items dropped by mobs
+#    Configuration:
+#      multiplier: 2.0          # Multiply drops by this amount
+#
+# 4. DAMAGE_IMMUNITY
+#    Description: Players become immune to specific damage types
+#    Configuration:
+#      immune-causes:           # List of damage causes to block
+#        - FIRE
+#        - FIRE_TICK
+#        - LAVA
+#        - FALL
+#        - DROWNING
+#        - ENTITY_EXPLOSION
+#        - BLOCK_EXPLOSION
+#        - POISON
+#        - WITHER
+#        - HOT_FLOOR
+#        - FREEZE
+#
+# 5. MOB_SPAWN_MULTIPLIER
+#    Description: Increase the rate of natural mob spawning
+#    Configuration:
+#      spawn-multiplier: 2.0    # Multiply spawn rate by this amount
+#
+# 6. EXPLODING_MOBS
+#    Description: Mobs explode when they die
+#    Configuration:
+#      explosion-power: 2.0     # Explosion strength
+#      break-blocks: false      # Whether explosion breaks blocks
+#      set-fire: false          # Whether explosion sets fire
+#      chance: 0.5              # Chance mob explodes (0.0-1.0)
+#
+# Tips:
+#   - Balance vampirism carefully - high percentages make players invincible
+#   - Use conditions to make mob events night-only for extra challenge
+#   - Combine buff_mobs with mob_spawn_multiplier for intense combat
+#   - Damage immunity events are great for dimension-specific challenges
+#   - Use triggers to chain combat events together
+#
+# ============================================================================
+
+events:
+  vampirism:
+    enabled: true
+    type: VAMPIRISM
+    duration: 300
+    announcement: "<gradient:red:dark_red>🩸 Vampirism</gradient> <gray>- Heal by dealing damage!"
+    display-name: "<gradient:red:dark_red>🩸 Vampirism</gradient>"
+    weight: 10
+    heal-percent: 25
+    bossbar-color: RED
+    bossbar-style: PROGRESS
+    symbol: "⚔"
+    start-sound: ENTITY_ENDER_DRAGON_GROWL
+    
+  buff_mobs:
+    enabled: true
+    type: BUFF_SPAWNED_MOBS
+    duration: 240
+    announcement: "<gradient:red:#FF5500>⚔ Buffed Mobs</gradient> <gray>- Stronger enemies ahead!"
+    display-name: "<gradient:red:#FF5500>⚔ Buffed Mobs</gradient>"
+    symbol: "⚔"
+    weight: 8
+    effects:
+      - type: SPEED
+        amplifier: 1
+        duration: 999999
+      - type: STRENGTH
+        amplifier: 0
+        duration: 999999
+    equipment:
+      helmet: IRON_HELMET
+      chestplate: IRON_CHESTPLATE
+      leggings: IRON_LEGGINGS
+      boots: IRON_BOOTS
+      hand: IRON_SWORD
+    bossbar-color: RED
+    
+  damage_immunity:
+    enabled: true
+    type: DAMAGE_IMMUNITY
+    duration: 180
+    announcement: "<gradient:blue:aqua>🛡 Damage Immunity</gradient> <gray>- Fire & Ice protection!"
+    display-name: "Fire & Ice Protection"
+    weight: 12
+    damage-types:
+      - FIRE
+      - FIRE_TICK
+      - LAVA
+      - HOT_FLOOR
+      - FREEZE
+    bossbar-color: BLUE
+    symbol: "🛡"
+    
+  mob_loot_boost:
+    enabled: true
+    type: MOB_LOOT_MULTIPLIER
+    duration: 300
+    announcement: "<gradient:gold:yellow>💰 Loot Boost</gradient> <gray>- Double mob drops!"
+    display-name: "<gradient:gold:yellow>💰 Loot Boost</gradient>"
+    symbol: "💰"
+    weight: 10
+    multiplier: 2.0
+    bossbar-color: YELLOW
+    
+  exploding_mobs:
+    enabled: true
+    type: EXPLODING_MOBS
+    duration: 180
+    announcement: "<gradient:gold:red>💥 Exploding Mobs</gradient> <gray>- Mobs explode on death!"
+    display-name: "<gradient:gold:red>💥 Exploding Mobs</gradient>"
+    weight: 6
+    explosion-power: 2.0
+    break-blocks: false
+    set-fire: false
+    chance: 0.5
+    bossbar-color: RED
+    symbol: "💥"
+    
+  mob_spawn_surge:
+    enabled: true
+    type: MOB_SPAWN_MULTIPLIER
+    duration: 240
+    announcement: "<gradient:dark_red:red>👹 Mob Surge</gradient> <gray>- Increased mob spawns!"
+    display-name: "<gradient:dark_red:red>👹 Mob Surge</gradient>"
+    symbol: "👹"
+    weight: 8
+    spawn-multiplier: 3.0
+    bossbar-color: RED
+
+  zombie-apocalypse:
+    enabled: true
+    type: BUFF_SPAWNED_MOBS
+    duration: 450
+    announcement: "<gradient:red:dark_red>☠ Zombie Apocalypse</gradient> <gray>- Enhanced zombies!"
+    display-name: "<gradient:red:dark_red>☠ Zombie Apocalypse</gradient>"
+    weight: 15
+    bossbar-color: RED
+    symbol: "☠"
+    start-sound: ENTITY_ZOMBIE_AMBIENT
+    target-mobs:
+      - ZOMBIE
+      - ZOMBIE_VILLAGER
+    potion-effects:
+      - type: SPEED
+        amplifier: 1
+      - type: STRENGTH
+        amplifier: 0
+    equipment:
+      helmet: IRON_HELMET
+      chestplate: IRON_CHESTPLATE
+      leggings: IRON_LEGGINGS
+      boots: IRON_BOOTS
+      weapon: IRON_SWORD
+    equipment-drop-chance: 0.15
+
+  skeleton-snipers:
+    enabled: true
+    type: BUFF_SPAWNED_MOBS
+    duration: 360
+    announcement: "<gradient:white:gray>⚔ Skeleton Snipers</gradient> <gray>- Deadly archers!"
+    display-name: "<gradient:white:gray>⚔ Skeleton Snipers</gradient>"
+    symbol: "🏹"
+    weight: 18
+    bossbar-color: WHITE
+    start-sound: ENTITY_SKELETON_AMBIENT
+    target-mobs:
+      - SKELETON
+    potion-effects:
+      - type: DAMAGE_RESISTANCE
+        amplifier: 0
+    equipment:
+      helmet: GOLDEN_HELMET
+      weapon: BOW
+
+  creeper-chaos:
+    enabled: true
+    type: BUFF_SPAWNED_MOBS
+    duration: 300
+    announcement: "<gradient:green:dark_green>☢ Creeper Chaos</gradient> <gray>- Invisible creepers!"
+    display-name: "<gradient:green:dark_green>☢ Creeper Chaos</gradient>"
+    symbol: "☢"
+    weight: 12
+    bossbar-color: GREEN
+    start-sound: ENTITY_CREEPER_PRIMED
+    target-mobs:
+      - CREEPER
+    potion-effects:
+      - type: SPEED
+        amplifier: 0
+      - type: INVISIBILITY
+        amplifier: 0
+
+  spider-invasion:
+    enabled: true
+    type: BUFF_SPAWNED_MOBS
+    duration: 420
+    announcement: "<gradient:dark_gray:red>🕷 Spider Invasion</gradient> <gray>- Fast spiders!"
+    display-name: "<gradient:dark_gray:red>🕷 Spider Invasion</gradient>"
+    symbol: "🕷"
+    weight: 16
+    bossbar-color: PURPLE
+    start-sound: ENTITY_SPIDER_AMBIENT
+    target-mobs:
+      - SPIDER
+      - CAVE_SPIDER
+    potion-effects:
+      - type: SPEED
+        amplifier: 1
+      - type: STRENGTH
+        amplifier: 1
+
+  life-steal:
+    enabled: true
+    type: VAMPIRISM
+    duration: 360
+    announcement: "<gradient:red:dark_red>🩸 Life Steal</gradient> <gray>- Heal by dealing damage!"
+    display-name: "Life Steal"
+    symbol: "🩸"
+    weight: 20
+    bossbar-color: RED
+    start-sound: ENTITY_WITCH_DRINK
+    heal-percentage: 0.2
+
+  vampire-mode:
+    enabled: true
+    type: VAMPIRISM
+    duration: 240
+    announcement: "<gradient:dark_red:black>🩸 Vampire Mode</gradient> <gray>- Powerful vampirism!"
+    display-name: "Vampire Mode"
+    symbol: "🦇"
+    weight: 12
+    bossbar-color: RED
+    start-sound: ENTITY_BAT_AMBIENT
+    heal-percentage: 0.5
+
+  blood-moon:
+    enabled: true
+    type: VAMPIRISM
+    duration: 180
+    announcement: "<gradient:red:dark_red>🌙 Blood Moon</gradient> <gray>- Maximum vampirism!"
+    display-name: "Blood Moon"
+    symbol: "🌙"
+    weight: 8
+    bossbar-color: RED
+    start-sound: ENTITY_WOLF_AMBIENT
+    heal-percentage: 0.75
+
+  double-loot:
+    enabled: true
+    type: MOB_LOOT_MULTIPLIER
+    duration: 420
+    announcement: "<gradient:yellow:gold>💰 Double Loot</gradient> <gray>- Mobs drop twice as much!"
+    display-name: "Double Loot"
+    symbol: "💰"
+    weight: 28
+    bossbar-color: YELLOW
+    start-sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    multiplier: 2.0
+
+  triple-loot:
+    enabled: true
+    type: MOB_LOOT_MULTIPLIER
+    duration: 300
+    announcement: "<gradient:gold:yellow>💰 Triple Loot</gradient> <gray>- Triple mob drops!"
+    display-name: "Triple Loot"
+    symbol: "💰"
+    weight: 15
+    bossbar-color: PINK
+    start-sound: ENTITY_PLAYER_LEVELUP
+    multiplier: 3.0
+
+  treasure-trove:
+    enabled: true
+    type: MOB_LOOT_MULTIPLIER
+    duration: 180
+    announcement: "<gradient:gold:#FF5500>💎 Treasure Trove</gradient> <gray>- Quadruple loot!"
+    display-name: "Treasure Trove"
+    symbol: "💎"
+    weight: 10
+    bossbar-color: YELLOW
+    start-sound: UI_TOAST_CHALLENGE_COMPLETE
+    multiplier: 4.0
+
+  fire-immunity:
+    enabled: true
+    type: DAMAGE_IMMUNITY
+    duration: 360
+    announcement: "<gradient:red:#FF5500>🔥 Fire Immunity</gradient> <gray>- Immune to fire!"
+    display-name: "Fire Immunity"
+    symbol: "🔥"
+    weight: 24
+    bossbar-color: RED
+    start-sound: ITEM_FIRECHARGE_USE
+    immune-causes:
+      - FIRE
+      - FIRE_TICK
+      - LAVA
+      - HOT_FLOOR
+
+  fall-protection:
+    enabled: true
+    type: DAMAGE_IMMUNITY
+    duration: 420
+    announcement: "<gradient:blue:aqua>🪂 Fall Protection</gradient> <gray>- No fall damage!"
+    display-name: "Fall Protection"
+    symbol: "🪂"
+    weight: 26
+    bossbar-color: BLUE
+    start-sound: ITEM_ELYTRA_FLYING
+    immune-causes:
+      - FALL
+
+  explosion-shield:
+    enabled: true
+    type: DAMAGE_IMMUNITY
+    duration: 300
+    announcement: "<gradient:yellow:#FF5500>💥 Explosion Shield</gradient> <gray>- Immune to explosions!"
+    display-name: "Explosion Shield"
+    symbol: "💥"
+    weight: 18
+    bossbar-color: YELLOW
+    start-sound: ENTITY_GENERIC_EXPLODE
+    immune-causes:
+      - ENTITY_EXPLOSION
+      - BLOCK_EXPLOSION
+
+  drowning-immunity:
+    enabled: true
+    type: DAMAGE_IMMUNITY
+    duration: 480
+    announcement: "<gradient:blue:aqua>🌊 Drowning Immunity</gradient> <gray>- Can't drown!"
+    display-name: "Drowning Immunity"
+    symbol: "🌊"
+    weight: 20
+    bossbar-color: BLUE
+    start-sound: ENTITY_PLAYER_SPLASH
+    immune-causes:
+      - DROWNING
+
+  poison-immunity:
+    enabled: true
+    type: DAMAGE_IMMUNITY
+    duration: 360
+    announcement: "<gradient:green:#55FF55>☠ Poison Immunity</gradient> <gray>- Immune to poison!"
+    display-name: "Poison Immunity"
+    symbol: "☠"
+    weight: 16
+    bossbar-color: GREEN
+    start-sound: ENTITY_WITCH_DRINK
+    immune-causes:
+      - POISON
+      - WITHER
+
+  horde-night:
+    enabled: true
+    type: MOB_SPAWN_MULTIPLIER
+    duration: 240
+    announcement: "<gradient:dark_red:red>☠ Horde Night</gradient> <gray>- Triple mob spawns!"
+    display-name: "Horde Night"
+    symbol: "☠"
+    weight: 15
+    bossbar-color: RED
+    conditions:
+      time: NIGHT
+    spawn-multiplier: 3.0
+    start-sound: ENTITY_WITHER_AMBIENT
+    ambient-sound: ENTITY_SKELETON_AMBIENT
+    ambient-volume: 0.4
+    ambient-pitch: 0.8
+
+  mob-frenzy:
+    enabled: true
+    type: MOB_SPAWN_MULTIPLIER
+    duration: 180
+    announcement: "<gradient:purple:red>☢ Mob Frenzy</gradient> <gray>- Quadruple spawns!"
+    display-name: "Mob Frenzy"
+    symbol: "☢"
+    weight: 10
+    bossbar-color: PURPLE
+    spawn-multiplier: 4.0
+    start-sound: ENTITY_RAVAGER_ROAR
+    ambient-sound: ENTITY_VEX_AMBIENT
+    ambient-volume: 0.5
+    ambient-pitch: 1.2
+
+  population-boom:
+    enabled: true
+    type: MOB_SPAWN_MULTIPLIER
+    duration: 420
+    announcement: "<gradient:green:#55FF55>🐾 Population Boom</gradient> <gray>- More mobs everywhere!"
+    display-name: "Population Boom"
+    symbol: "🐾"
+    weight: 18
+    bossbar-color: GREEN
+    spawn-multiplier: 2.5
+    start-sound: ENTITY_WOLF_AMBIENT
+    ambient-sound: ENTITY_SPIDER_AMBIENT
+    ambient-volume: 0.3
+    ambient-pitch: 1.0
+
+  # MiniMessage showcase event
+  fire-and-ice:
+    enabled: false
+    type: DAMAGE_IMMUNITY
+    duration: 360
+    announcement: "<gradient:red:blue>🔥❄ Fire and Ice Protection!</gradient>"
+    display-name: "<gradient:red:blue><bold>🔥❄ Fire & Ice</bold></gradient>"
+    symbol: "❄"
+    weight: 20
+    bossbar-color: BLUE
+    start-sound: BLOCK_GLASS_BREAK
+    immune-causes:
+      - FIRE
+      - FIRE_TICK
+      - LAVA
+      - FREEZE
+
+  hex-color-event:
+    enabled: false
+    type: MOB_LOOT_MULTIPLIER
+    duration: 420
+    announcement: "<#FF6B6B>Custom <#4ECDC4>Colored <#45B7D1>Event!"
+    display-name: "<#FF6B6B><bold>💎 Treasure Hunt"
+    symbol: "💎"
+    weight: 18
+    bossbar-color: PINK
+    start-sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    multiplier: 2.5

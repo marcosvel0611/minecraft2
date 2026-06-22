@@ -1,0 +1,371 @@
+# ============================================================================
+# SPECIAL.YML - Combination & Special Events
+# ============================================================================
+#
+# This file contains advanced events that combine multiple mechanics,
+# use event triggers, or have special conditions. These events are more
+# complex and powerful than standard events.
+#
+# ADVANCED FEATURES:
+#
+# 1. EVENT TRIGGERS
+#    Description: Events can trigger other events with a probability
+#    Configuration:
+#      triggers:
+#        - event: "event-name"  # Name of event to trigger
+#          chance: 0.5          # Probability (0.0-1.0, where 0.5 = 50%)
+#    
+#    How It Works:
+#      - When parent event starts, it may trigger child events
+#      - Each trigger is checked independently
+#      - Child events run their full duration
+#      - Creates dynamic, unpredictable gameplay
+#    
+#    Example:
+#      lucky-day:
+#        triggers:
+#          - event: "double-loot"
+#            chance: 0.6        # 60% chance to trigger
+#          - event: "xp-boost"
+#            chance: 0.5        # 50% chance to trigger
+#      Result: Lucky Day might trigger both, one, or neither!
+#
+# 2. DIMENSION-SPECIFIC EVENTS
+#    Description: Events that only work in specific worlds
+#    Configuration:
+#      conditions:
+#        worlds:
+#          - world_nether       # Nether only
+#          - world_the_end      # End only
+#          - world              # Overworld only
+#    
+#    Use Cases:
+#      - Nether Expedition: Fire immunity in Nether
+#      - End Madness: Buffed endermen in End
+#      - Overworld Bonus: Mining bonuses in main world
+#
+# 3. CONSOLE COMMAND EVENTS
+#    Description: Execute console commands when event starts/ends
+#    Configuration:
+#      type: CONSOLE_COMMAND
+#      start-commands:          # Commands run when event starts
+#        - "say Event started!"
+#        - "title @a title {\"text\":\"Event!\"}"
+#      end-commands:            # Commands run when event ends
+#        - "say Event ended!"
+#    
+#    Use Cases:
+#      - Economy bonuses (shop discounts)
+#      - Server announcements
+#      - Custom plugin integrations
+#      - Reward distribution
+#    
+#    Tips:
+#      - Commands run as console (full permissions)
+#      - Use @a for all players, @p for nearest
+#      - Test commands before using in events
+#      - Disabled by default for safety
+#
+# 4. MULTI-CONDITION EVENTS
+#    Description: Events with multiple strict conditions
+#    Configuration:
+#      conditions:
+#        time: NIGHT            # Must be night
+#        weather: STORM         # Must be storming
+#        min-players: 3         # At least 3 players online
+#        worlds:
+#          - world              # Only in overworld
+#    
+#    Use Cases:
+#      - Apocalypse Night: Night + Storm + 3+ players
+#      - Rare Events: Multiple conditions = less frequent
+#      - Challenge Events: Difficult conditions for rewards
+#
+# EVENT DESIGN PATTERNS:
+#
+# Pattern 1: Bonus Cascade
+#   Parent event triggers multiple bonus events
+#   Example: Lucky Day → Double Loot + XP Boost + Harvest Bonus
+#   Result: Massive bonuses when lucky day occurs
+#
+# Pattern 2: Escalating Danger
+#   Parent event triggers increasingly dangerous events
+#   Example: Blood Moon → Buffed Mobs → Mob Surge
+#   Result: Difficulty ramps up over time
+#
+# Pattern 3: Dimension Challenges
+#   Events specific to Nether/End with appropriate rewards
+#   Example: Nether Expedition (fire immunity) + Mining Bonanza
+#   Result: Encourages dimension exploration
+#
+# Pattern 4: Server-Wide Events
+#   Console commands for economy, announcements, rewards
+#   Example: Economy Bonus → Shop discounts + Announcements
+#   Result: Entire server participates
+#
+# BALANCING TIPS:
+#
+# - High trigger chances (0.7+) = frequent combos = powerful
+# - Low trigger chances (0.3-) = rare combos = balanced
+# - Multiple triggers = exponential power (be careful!)
+# - Apocalypse Cascade is VERY challenging (5x spawns + triggers)
+# - Test trigger chains before enabling on live server
+# - Consider disabling overpowered combinations
+#
+# ============================================================================
+
+events:
+  lucky-day:
+    enabled: true
+    type: XP_MULTIPLIER
+    duration: 480
+    announcement: "<gradient:green:yellow>🍀 Lucky Day</gradient> <gray>- Everything's better!"
+    display-name: "Lucky Day"
+    symbol: "🍀"
+    weight: 22
+    bossbar-color: GREEN
+    multiplier: 2.5
+    start-sound: UI_TOAST_CHALLENGE_COMPLETE
+    ambient-sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    ambient-volume: 0.2
+    ambient-pitch: 1.4
+    triggers:
+      - event: "double-loot"
+        chance: 0.6
+      - event: "bountiful-harvest"
+        chance: 0.5
+      - event: "diamond_fever"
+        chance: 0.4
+
+  mining-bonanza:
+    enabled: true
+    type: AUTO_SMELT
+    duration: 480
+    announcement: "<gradient:gold:yellow>⛏ Mining Bonanza</gradient> <gray>- Ultimate mining!"
+    display-name: "Mining Bonanza"
+    symbol: "💎"
+    weight: 24
+    bossbar-color: YELLOW
+    start-sound: BLOCK_ANVIL_USE
+    ambient-sound: BLOCK_FURNACE_FIRE_CRACKLE
+    ambient-volume: 0.3
+    ambient-pitch: 1.1
+    triggers:
+      - event: "diamond_fever"
+        chance: 0.4
+      - event: "gold-rush"
+        chance: 0.5
+
+  blood-moon-rising:
+    enabled: true
+    type: VAMPIRISM
+    duration: 360
+    announcement: "<gradient:red:dark_red>🌙 Blood Moon Rising</gradient> <gray>- Feed on your enemies!"
+    display-name: "Blood Moon Rising"
+    symbol: "🌙"
+    weight: 12
+    bossbar-color: RED
+    conditions:
+      time: NIGHT
+      min-players: 2
+    heal-percent: 60
+    start-sound: ENTITY_WOLF_AMBIENT
+    ambient-sound: AMBIENT_CAVE
+    ambient-volume: 0.4
+    ambient-pitch: 0.7
+    triggers:
+      - event: "buff_mobs"
+        chance: 0.5
+      - event: "mob_spawn_surge"
+        chance: 0.3
+
+  apocalypse-night:
+    enabled: true
+    type: BUFF_SPAWNED_MOBS
+    duration: 360
+    announcement: "<gradient:dark_red:red>☠ Apocalypse Night</gradient> <gray>- Survive the horde!"
+    display-name: "Apocalypse Night"
+    symbol: "☠"
+    weight: 8
+    bossbar-color: RED
+    conditions:
+      time: NIGHT
+      weather: STORM
+      min-players: 3
+    effects:
+      - type: SPEED
+        amplifier: 1
+        duration: 999999
+      - type: STRENGTH
+        amplifier: 1
+        duration: 999999
+      - type: DAMAGE_RESISTANCE
+        amplifier: 0
+        duration: 999999
+    equipment:
+      helmet: DIAMOND_HELMET
+      chestplate: DIAMOND_CHESTPLATE
+      weapon: DIAMOND_SWORD
+    equipment-drop-chance: 0.20
+    start-sound: ENTITY_WITHER_SPAWN
+    ambient-sound: ENTITY_ZOMBIE_AMBIENT
+    ambient-volume: 0.5
+    ambient-pitch: 0.8
+
+  apocalypse-cascade:
+    enabled: false  # Disabled by default - VERY challenging!
+    type: MOB_SPAWN_MULTIPLIER
+    duration: 300
+    announcement: "<gradient:dark_red:black>⚠ APOCALYPSE CASCADE</gradient> <gray>- The end is near!"
+    display-name: "APOCALYPSE CASCADE"
+    symbol: "⚠"
+    weight: 5
+    bossbar-color: RED
+    conditions:
+      time: NIGHT
+      weather: STORM
+      min-players: 3
+    multiplier: 5.0
+    start-sound: ENTITY_WITHER_SPAWN
+    ambient-sound: ENTITY_WITHER_AMBIENT
+    ambient-volume: 0.6
+    ambient-pitch: 0.7
+    triggers:
+      - event: "apocalypse-night"
+        chance: 0.8
+      - event: "the-mist"
+        chance: 0.7
+      - event: "silent-mobs"
+        chance: 0.6
+      - event: "acid_rain"
+        chance: 0.5
+
+  nether-expedition:
+    enabled: true
+    type: DAMAGE_IMMUNITY
+    duration: 420
+    announcement: "<gradient:red:#FF5500>🔥 Nether Expedition</gradient> <gray>- Brave the inferno!"
+    display-name: "Nether Expedition"
+    symbol: "🔥"
+    weight: 18
+    bossbar-color: RED
+    conditions:
+      # NOTE: World names may vary by server. Common names:
+      # Spigot/Paper: world_nether | Some servers: nether
+      worlds:
+        - world_nether
+        - nether
+    damage-types:
+      - FIRE
+      - FIRE_TICK
+      - LAVA
+      - HOT_FLOOR
+    start-sound: BLOCK_PORTAL_TRAVEL
+    ambient-sound: BLOCK_LAVA_AMBIENT
+    ambient-volume: 0.4
+
+  end-dimension-madness:
+    enabled: true
+    type: BUFF_SPAWNED_MOBS
+    duration: 300
+    announcement: "<gradient:purple:dark_purple>👁 End Dimension Madness</gradient> <gray>- They're watching..."
+    display-name: "End Madness"
+    symbol: "👁"
+    weight: 10
+    bossbar-color: PURPLE
+    conditions:
+      # NOTE: World names may vary by server. Common names:
+      # Spigot/Paper: world_the_end | Some servers: the_end
+      worlds:
+        - world_the_end
+        - the_end
+    effects:
+      - type: SPEED
+        amplifier: 2
+        duration: 999999
+      - type: STRENGTH
+        amplifier: 1
+        duration: 999999
+    start-sound: ENTITY_ENDERMAN_SCREAM
+    ambient-sound: ENTITY_ENDERMAN_STARE
+    ambient-volume: 0.4
+    ambient-pitch: 0.8
+
+  deep-mining-expedition:
+    enabled: true
+    type: MODIFY_BLOCK_DROPS
+    duration: 600
+    announcement: "<gradient:blue:aqua>⛏ Deep Mining Expedition</gradient> <gray>- Deepslate riches!"
+    display-name: "Deep Mining"
+    symbol: "⛏"
+    weight: 22
+    bossbar-color: BLUE
+    target-blocks:
+      - DEEPSLATE_DIAMOND_ORE
+      - DEEPSLATE_EMERALD_ORE
+      - DEEPSLATE_GOLD_ORE
+    custom-drops:
+      - material: DIAMOND
+        amount: 3
+        chance: 0.15
+      - material: EMERALD
+        amount: 2
+        chance: 0.10
+      - material: GOLD_INGOT
+        amount: 2
+        chance: 0.20
+    start-sound: BLOCK_ANVIL_USE
+    ambient-sound: BLOCK_STONE_BREAK
+    ambient-volume: 0.3
+    ambient-pitch: 0.9
+
+  desert-heat:
+    enabled: true
+    type: SOLAR_FLARE
+    duration: 300
+    announcement: "<gradient:yellow:#FF5500>🌞 Desert Heat</gradient> <gray>- Scorching sun!"
+    display-name: "Desert Heat"
+    symbol: "☀"
+    weight: 16
+    bossbar-color: YELLOW
+    conditions:
+      time: DAY
+      weather: CLEAR
+    damage: 1.0
+    start-sound: ENTITY_BLAZE_AMBIENT
+    ambient-sound: BLOCK_FIRE_AMBIENT
+    ambient-volume: 0.4
+    ambient-pitch: 1.3
+    triggers:
+      - event: "meteor_shower"
+        chance: 0.25
+
+  # Console command events - Disabled by default, customize for your server!
+  server-announcement:
+    enabled: false
+    type: CONSOLE_COMMAND
+    duration: 60
+    announcement: "<gradient:yellow:gold>📢 Server Announcement</gradient>"
+    display-name: "Announcement"
+    symbol: "📢"
+    weight: 10
+    bossbar-color: YELLOW
+    start-commands:
+      - "say &6&l[EVENT] &eA special event has started!"
+      - "title @a title {\"text\":\"Event Started!\",\"color\":\"gold\"}"
+    end-commands:
+      - "say &6&l[EVENT] &7The event has ended!"
+
+  economy-bonus:
+    enabled: false
+    type: CONSOLE_COMMAND
+    duration: 300
+    announcement: "<gradient:green:#55FF55>💵 Economy Bonus</gradient>"
+    display-name: "Economy Bonus"
+    symbol: "💵"
+    weight: 15
+    bossbar-color: GREEN
+    start-commands:
+      - "say &a&l[ECONOMY] &eAll shop prices reduced by 25% for 5 minutes!"
+    end-commands:
+      - "say &a&l[ECONOMY] &7Shop prices have returned to normal."

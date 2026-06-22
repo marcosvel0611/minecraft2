@@ -1,0 +1,64 @@
+# ============================================================================
+# POTIONS.YML - Potions Loot Pool
+# ============================================================================
+#
+# Potion-related items for special events.
+#
+# ============================================================================
+
+display-name: "Potions"
+description: "Potion-related items"
+
+items:
+  # Potions
+  - item: POTION
+    amount: 1
+    chance: 0.8
+    weight: 2.0
+    
+  - item: SPLASH_POTION
+    amount: 1
+    chance: 0.6
+    weight: 1.5
+    
+  - item: LINGERING_POTION
+    amount: 1
+    chance: 0.4
+    weight: 1.0
+    
+  # XP bottles
+  - item: EXPERIENCE_BOTTLE
+    min-amount: 3
+    max-amount: 10
+    chance: 0.7
+    weight: 2.0
+    
+  # Brewing ingredients
+  - item: BLAZE_POWDER
+    min-amount: 2
+    max-amount: 5
+    chance: 0.5
+    weight: 1.0
+    
+  - item: GHAST_TEAR
+    min-amount: 1
+    max-amount: 2
+    chance: 0.3
+    weight: 0.8
+    
+  - item: FERMENTED_SPIDER_EYE
+    min-amount: 1
+    max-amount: 3
+    chance: 0.6
+    weight: 1.2
+    
+  - item: MAGMA_CREAM
+    min-amount: 1
+    max-amount: 4
+    chance: 0.5
+    weight: 1.0
+    
+  - item: RABBIT_FOOT
+    amount: 1
+    chance: 0.3
+    weight: 0.6

@@ -1,0 +1,10 @@
+command-name: yamipa
+command-aliases:
+- image
+- images
+verbose: false
+animate-images: true
+images-path: images
+cache-path: cache
+data-path: images.dat
+max-image-dimension: 30

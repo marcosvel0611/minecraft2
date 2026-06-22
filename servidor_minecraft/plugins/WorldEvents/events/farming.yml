@@ -1,0 +1,202 @@
+# ============================================================================
+# FARMING.YML - Farming, Fishing & Tree Events
+# ============================================================================
+#
+# This file contains events focused on farming, fishing, and tree chopping.
+# These events help players gather renewable resources more efficiently.
+#
+# EVENT TYPES IN THIS FILE:
+#
+# 1. BUMPER_HARVEST
+#    Description: Multiply crop yields when harvesting
+#    Configuration:
+#      multiplier: 2.0          # Multiply crop drops by this amount
+#    Supported Crops:
+#      - Wheat, Carrots, Potatoes, Beetroot
+#      - Nether Wart, Sweet Berries, Glow Berries
+#      - Cocoa Beans, Melons, Pumpkins
+#      - Sugar Cane, Bamboo, Kelp
+#    
+#    Tips:
+#      - Works on fully grown crops only
+#      - Multiplier applies to base drops (before Fortune)
+#      - Great for encouraging farming during specific times
+#
+# 2. TREE_FELLER
+#    Description: Break entire trees when chopping logs
+#    Configuration:
+#      max-blocks: 100          # Maximum blocks to break per tree
+#    Supported Wood Types:
+#      - Oak, Spruce, Birch, Jungle, Acacia, Dark Oak
+#      - Crimson, Warped (Nether trees)
+#      - Mangrove, Cherry (1.19+)
+#    
+#    Tips:
+#      - Only breaks connected logs and leaves
+#      - Respects tool durability (uses durability per block)
+#      - Set max-blocks to prevent lag on huge trees
+#      - Works with any axe (even bare hands!)
+#
+# 3. FISHING_FORTUNE
+#    Description: Improve fishing catches and treasure chances
+#    Configuration:
+#      treasure-chance: 0.3     # Chance to catch treasure (0.0-1.0)
+#      junk-chance: 0.05        # Chance to catch junk (0.0-1.0)
+#    
+#    Treasure Items:
+#      - Enchanted Books, Bows, Fishing Rods
+#      - Name Tags, Saddles, Nautilus Shells
+#      - Lily Pads, and more!
+#    
+#    Tips:
+#      - Higher treasure-chance = more valuable catches
+#      - Lower junk-chance = fewer sticks and leather boots
+#      - Stacks with Luck of the Sea enchantment
+#      - Great for ocean-themed events
+#
+# Combination Ideas:
+#   - Harvest Festival: Bumper Harvest + Rampant Growth
+#   - Lumberjack Day: Tree Feller + Durability Protection
+#   - Fishing Tournament: Fishing Fortune + XP Multiplier
+#   - Farmer's Market: Bumper Harvest + Lucky Day (triggers)
+#
+# ============================================================================
+
+events:
+  bountiful-harvest:
+    enabled: true
+    type: BUMPER_HARVEST
+    duration: 600
+    announcement: "<gradient:green:#55FF55>🌾 Bountiful Harvest</gradient> <gray>- Crops yield more!"
+    display-name: "Bountiful Harvest"
+    symbol: "🌾"
+    weight: 30
+    bossbar-color: GREEN
+    start-sound: BLOCK_CROP_BREAK
+    multiplier: 2.0
+
+  mega-harvest:
+    enabled: true
+    type: BUMPER_HARVEST
+    duration: 360
+    announcement: "<gradient:green:dark_green>🌾 Mega Harvest</gradient> <gray>- Triple crops!"
+    display-name: "Mega Harvest"
+    symbol: "🌽"
+    weight: 18
+    bossbar-color: GREEN
+    start-sound: BLOCK_COMPOSTER_READY
+    multiplier: 3.0
+
+  farmers-dream:
+    enabled: true
+    type: BUMPER_HARVEST
+    duration: 240
+    announcement: "<gradient:green:yellow>🌻 Farmer's Dream</gradient> <gray>- Quadruple crops!"
+    display-name: "Farmer's Dream"
+    symbol: "🌻"
+    weight: 12
+    bossbar-color: GREEN
+    start-sound: ENTITY_VILLAGER_WORK_FARMER
+    multiplier: 4.0
+
+  blessed-harvest-day:
+    enabled: true
+    type: BUMPER_HARVEST
+    duration: 480
+    announcement: "<gradient:yellow:gold>🌾 Blessed Harvest Day</gradient> <gray>- Divine bounty!"
+    display-name: "Blessed Harvest"
+    symbol: "✨"
+    weight: 20
+    bossbar-color: YELLOW
+    conditions:
+      time: DAY
+      weather: CLEAR
+    multiplier: 3.0
+    start-sound: ENTITY_VILLAGER_YES
+    ambient-sound: ENTITY_CHICKEN_AMBIENT
+    ambient-volume: 0.2
+    ambient-pitch: 1.2
+
+  lumberjack:
+    enabled: true
+    type: TREE_FELLER
+    duration: 420
+    announcement: "<gradient:#8B4513:green>🪓 Lumberjack</gradient> <gray>- Chop entire trees!"
+    display-name: "Lumberjack"
+    symbol: "🪓"
+    weight: 26
+    bossbar-color: GREEN
+    start-sound: BLOCK_WOOD_BREAK
+    max-blocks: 100
+
+  timber:
+    enabled: true
+    type: TREE_FELLER
+    duration: 480
+    announcement: "<gradient:#8B4513:dark_green>🌲 TIMBER!</gradient> <gray>- Trees fall fast!"
+    display-name: "TIMBER!"
+    symbol: "🌲"
+    weight: 24
+    bossbar-color: YELLOW
+    start-sound: ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR
+    max-blocks: 150
+
+  lucky-fishing:
+    enabled: true
+    type: FISHING_FORTUNE
+    duration: 480
+    announcement: "<gradient:blue:aqua>🎣 Lucky Fishing</gradient> <gray>- Better catches!"
+    display-name: "Lucky Fishing"
+    symbol: "🎣"
+    weight: 28
+    bossbar-color: BLUE
+    start-sound: ENTITY_FISHING_BOBBER_SPLASH
+    treasure-chance: 0.3
+    junk-chance: 0.05
+
+  master-angler:
+    enabled: true
+    type: FISHING_FORTUNE
+    duration: 300
+    announcement: "<gradient:blue:dark_aqua>🎣 Master Angler</gradient> <gray>- Triple fishing luck!"
+    display-name: "Master Angler"
+    symbol: "🐟"
+    weight: 16
+    bossbar-color: BLUE
+    start-sound: ENTITY_FISHING_BOBBER_RETRIEVE
+    treasure-chance: 0.5
+    junk-chance: 0.02
+
+  neptunes-blessing:
+    enabled: true
+    type: FISHING_FORTUNE
+    duration: 240
+    announcement: "<gradient:blue:purple>🔱 Neptune's Blessing</gradient> <gray>- Legendary catches!"
+    display-name: "Neptune's Blessing"
+    symbol: "🔱"
+    weight: 10
+    bossbar-color: BLUE
+    start-sound: ITEM_TRIDENT_RIPTIDE_3
+    treasure-chance: 0.7
+    junk-chance: 0.01
+
+  harvest-festival:
+    enabled: true
+    type: BUMPER_HARVEST
+    duration: 540
+    announcement: "<gradient:yellow:#FF5500>🎉 Harvest Festival</gradient> <gray>- Celebration time!"
+    display-name: "Harvest Festival"
+    symbol: "🎃"
+    weight: 20
+    bossbar-color: YELLOW
+    conditions:
+      time: DAY
+      weather: CLEAR
+    multiplier: 3.5
+    start-sound: ENTITY_VILLAGER_CELEBRATE
+    ambient-sound: ENTITY_CHICKEN_AMBIENT
+    ambient-volume: 0.2
+    ambient-pitch: 1.3
+    triggers:
+      - event: "rampant_growth"
+        chance: 0.7

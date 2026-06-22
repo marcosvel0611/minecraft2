@@ -1,0 +1,52 @@
+# ============================================================================
+# MISC.YML - Miscellaneous Items Loot Pool
+# ============================================================================
+#
+# Various useful items for mobs or treasure chests.
+#
+# ============================================================================
+
+display-name: "Miscellaneous Items"
+description: "Various useful items and weapons"
+
+items:
+  # Ranged weapons
+  - item: BOW
+    amount: 1
+    chance: 0.9
+    weight: 2.0
+    
+  - item: ARROW
+    min-amount: 8
+    max-amount: 32
+    chance: 0.95
+    weight: 3.0
+    
+  - item: CROSSBOW
+    amount: 1
+    chance: 0.6
+    weight: 1.0
+    
+  - item: TRIDENT
+    amount: 1
+    chance: 0.3
+    weight: 0.5
+    
+  # Consumables
+  - item: GOLDEN_APPLE
+    min-amount: 1
+    max-amount: 3
+    chance: 0.5
+    weight: 1.0
+    
+  - item: ENDER_PEARL
+    min-amount: 1
+    max-amount: 4
+    chance: 0.4
+    weight: 0.8
+    
+  # Rare items
+  - item: TOTEM_OF_UNDYING
+    amount: 1
+    chance: 0.15
+    weight: 0.3

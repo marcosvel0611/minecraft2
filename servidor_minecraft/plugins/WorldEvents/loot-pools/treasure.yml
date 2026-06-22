@@ -1,0 +1,72 @@
+# ============================================================================
+# TREASURE.YML - Treasure Chest Loot Pool
+# ============================================================================
+#
+# Valuable items for treasure hunt events.
+# Use with treasure_hunt events: loot-pool: treasure:8:80
+#
+# ============================================================================
+
+display-name: "Treasure Chest"
+description: "Valuable items for treasure hunts"
+
+items:
+  # Precious materials
+  - item: DIAMOND
+    min-amount: 1
+    max-amount: 5
+    chance: 0.9
+    weight: 2.0
+    
+  - item: EMERALD
+    min-amount: 2
+    max-amount: 8
+    chance: 0.85
+    weight: 1.8
+    
+  - item: GOLD_INGOT
+    min-amount: 3
+    max-amount: 12
+    chance: 0.95
+    weight: 2.5
+    
+  - item: IRON_INGOT
+    min-amount: 5
+    max-amount: 20
+    chance: 0.98
+    weight: 3.0
+    
+  # Rare materials
+  - item: NETHERITE_SCRAP
+    min-amount: 1
+    max-amount: 2
+    chance: 0.3
+    weight: 0.5
+    
+  - item: ANCIENT_DEBRIS
+    min-amount: 1
+    max-amount: 2
+    chance: 0.25
+    weight: 0.4
+    
+  # Special items
+  - item: ENCHANTED_GOLDEN_APPLE
+    amount: 1
+    chance: 0.2
+    weight: 0.3
+    
+  - item: NAME_TAG
+    min-amount: 1
+    max-amount: 2
+    chance: 0.6
+    weight: 1.0
+    
+  - item: SADDLE
+    amount: 1
+    chance: 0.5
+    weight: 0.8
+    
+  - item: MUSIC_DISC_PIGSTEP
+    amount: 1
+    chance: 0.15
+    weight: 0.3

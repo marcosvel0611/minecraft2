@@ -1,0 +1,394 @@
+# ============================================================================
+# WEATHER.YML - Weather & Atmospheric Events
+# ============================================================================
+#
+# This file contains events that create environmental challenges and
+# atmospheric effects based on weather, time, and natural phenomena.
+#
+# EVENT TYPES IN THIS FILE:
+#
+# 1. ACID_RAIN
+#    Description: Rain damages players who are exposed to it
+#    Configuration:
+#      damage: 1.0              # Damage per tick (every 2 seconds)
+#    Conditions:
+#      weather: RAIN            # Only active during rain
+#    
+#    Tips:
+#      - Players must seek shelter or use umbrellas (blocks above head)
+#      - Damage ignores armor but respects protection enchantments
+#      - Great for encouraging base building
+#
+# 2. METEOR_SHOWER
+#    Description: Meteors fall from the sky causing explosions
+#    Configuration:
+#      spawn-interval: 5        # Seconds between meteor spawns
+#      explosion-power: 3.0     # Explosion strength
+#      break-blocks: true       # Whether meteors break blocks
+#      set-fire: true           # Whether meteors set fire
+#      spawn-chance: 55         # % chance per player per tick to spawn a meteor
+#      explosion-chance: 60     # % of meteors that explode on impact
+#      use-falling-blocks: true # Use falling block visuals (true) or fireworks (false)
+#      meteor-materials:        # Block types used for falling meteors (must be solid blocks)
+#        - MAGMA_BLOCK
+#        - NETHERITE_BLOCK
+#        - CRYING_OBSIDIAN
+#        - BLACKSTONE
+#    
+#    Tips:
+#      - Meteors target random locations near players
+#      - Respects protection hooks (WorldGuard, GriefPrevention, Towny)
+#      - Creates craters if break-blocks is true
+#      - Best used at night for visual effect
+#
+# 3. SOLAR_FLARE
+#    Description: Direct sunlight sets players on fire
+#    Configuration:
+#      damage: 1.0              # Damage per tick
+#      fire-ticks: 40           # How long fire lasts (20 ticks = 1 second)
+#    Conditions:
+#      time: DAY                # Only active during daytime
+#      weather: CLEAR           # Only when not raining
+#    
+#    Tips:
+#      - Players must stay in shade or water
+#      - Fire Resistance potions provide immunity
+#      - Helmets reduce but don't prevent damage
+#
+# 4. THE_MIST
+#    Description: Applies blindness and darkness to all players
+#    Configuration:
+#      effects:                 # Potion effects to apply
+#        - type: BLINDNESS
+#          amplifier: 0
+#        - type: DARKNESS       # 1.19+ only
+#          amplifier: 0
+#    
+#    Tips:
+#      - Creates eerie, limited-visibility atmosphere
+#      - Great for horror-themed events
+#      - Combine with ambient sounds for immersion
+#
+# 5. PARANOIA
+#    Description: Plays random scary sounds to individual players
+#    Configuration:
+#      sounds:                  # List of sounds to play
+#        - ENTITY_ENDERMAN_STARE
+#        - ENTITY_GHAST_AMBIENT
+#        - AMBIENT_CAVE
+#      min-interval: 10         # Minimum seconds between sounds
+#      max-interval: 30         # Maximum seconds between sounds
+#    
+#    Tips:
+#      - Set hidden: true to hide boss bar
+#      - Sounds play at random intervals per player
+#      - Best used at night for maximum effect
+#
+# 6. RAMPANT_GROWTH
+#    Description: Plants grow rapidly and vegetation spawns
+#    Configuration:
+#      growth-multiplier: 3.0   # Speed up crop growth
+#      spawn-vegetation: true   # Spawn grass, flowers, etc.
+#    
+#    Tips:
+#      - Crops grow 3x faster during event
+#      - Grass and flowers appear around players
+#      - Great for nature-themed events
+#
+# 7. GRAVITY_TREES
+#    Description: Trees fall realistically when logs are broken
+#    Configuration:
+#      max-blocks: 150          # Maximum blocks per tree
+#    
+#    Tips:
+#      - Logs fall as items when tree is chopped
+#      - Creates realistic tree-felling experience
+#      - Leaves decay naturally after
+#
+# 8. SILENT_MOBS
+#    Description: Newly spawned mobs are invisible and silent
+#    Configuration:
+#      effects:                 # Effects applied to mobs
+#        - type: INVISIBILITY
+#          amplifier: 0
+#    
+#    Tips:
+#      - Creates tense, horror atmosphere
+#      - Mobs still make attack sounds
+#      - Best combined with night conditions
+#
+# Combination Ideas:
+#   - Apocalypse: Acid Rain + Meteor Shower + The Mist
+#   - Desert Survival: Solar Flare + Meteor Shower
+#   - Horror Night: Paranoia + The Mist + Silent Mobs
+#   - Nature's Fury: Rampant Growth + Gravity Trees
+#
+# ============================================================================
+
+events:
+  acid_rain:
+    enabled: true
+    type: ACID_RAIN
+    duration: 180
+    announcement: "<gradient:green:dark_green>☠ Acid Rain</gradient> <gray>- Seek shelter from the toxic rain!"
+    display-name: "Acid Rain"
+    symbol: "☣"
+    weight: 8
+    damage: 1.0
+    bossbar-color: GREEN
+    conditions:
+      weather: RAIN
+    ambient-sound: WEATHER_RAIN
+    ambient-volume: 0.5
+    
+  meteor_shower:
+    enabled: true
+    type: METEOR_SHOWER
+    duration: 120
+    announcement: "<gradient:gold:red>☄ Meteor Shower</gradient> <gray>- Watch the skies!"
+    display-name: "Meteor Shower"
+    symbol: "☄"
+    weight: 6
+    spawn-interval: 5
+    explosion-power: 3.0
+    break-blocks: true
+    set-fire: true
+    spawn-chance: 55
+    explosion-chance: 60
+    use-falling-blocks: true
+    # Fiery, volcanic meteor materials
+    meteor-materials:
+      - MAGMA_BLOCK
+      - NETHERITE_BLOCK
+      - CRYING_OBSIDIAN
+      - BLACKSTONE
+    bossbar-color: RED
+    conditions:
+      time: NIGHT
+    start-sound: ENTITY_ENDER_DRAGON_FLAP
+    
+  solar_flare:
+    enabled: true
+    type: SOLAR_FLARE
+    duration: 180
+    announcement: "<gradient:yellow:#FF5500>☀ Solar Flare</gradient> <gray>- Stay in the shade!"
+    display-name: "Solar Flare"
+    symbol: "☀"
+    weight: 8
+    damage: 1.0
+    bossbar-color: YELLOW
+    conditions:
+      time: DAY
+      weather: CLEAR
+      
+  the_mist:
+    enabled: true
+    type: THE_MIST
+    duration: 240
+    announcement: "<gradient:gray:dark_gray>🌫 The Mist</gradient> <gray>- Darkness falls..."
+    display-name: "The Mist"
+    symbol: "🌫"
+    weight: 8
+    effects:
+      - type: BLINDNESS
+        amplifier: 0
+        duration: 999999
+      - type: DARKNESS
+        amplifier: 0
+        duration: 999999
+    bossbar-color: WHITE
+    hidden: false
+    ambient-sound: AMBIENT_CAVE
+    ambient-volume: 0.3
+    
+  # NOTE: "paranoia" exists in horror.yml - this variant doesn't require night condition
+  paranoia-weather:
+    enabled: true
+    type: PARANOIA
+    duration: 300
+    announcement: "<gradient:dark_purple:purple>👁 Paranoia</gradient> <gray>- What was that sound?"
+    display-name: "Paranoia"
+    symbol: "👁"
+    weight: 7
+    sounds:
+      - ENTITY_ENDERMAN_STARE
+      - ENTITY_GHAST_AMBIENT
+      - AMBIENT_CAVE
+      - ENTITY_WITHER_AMBIENT
+    min-interval: 10
+    max-interval: 30
+    bossbar-color: PURPLE
+    hidden: true
+    
+  rampant_growth:
+    enabled: true
+    type: RAMPANT_GROWTH
+    duration: 180
+    announcement: "<gradient:green:#55FF55>🌿 Rampant Growth</gradient> <gray>- Nature flourishes!"
+    display-name: "Rampant Growth"
+    symbol: "🌿"
+    weight: 10
+    growth-multiplier: 3.0
+    spawn-vegetation: true
+    bossbar-color: GREEN
+    
+  gravity_trees:
+    enabled: true
+    type: GRAVITY_TREES
+    duration: 240
+    announcement: "<gradient:#8B4513:green>🌲 Gravity Trees</gradient> <gray>- Trees fall realistically!"
+    display-name: "Gravity Trees"
+    symbol: "🌲"
+    weight: 8
+    max-blocks: 150
+    bossbar-color: GREEN
+    
+  silent_mobs:
+    enabled: true
+    type: SILENT_MOBS
+    duration: 300
+    announcement: "<gradient:dark_gray:gray>🔇 Silent Mobs</gradient> <gray>- Mobs spawn invisible and silent!"
+    display-name: "Silent Mobs"
+    symbol: "🔇"
+    weight: 7
+    effects:
+      - type: INVISIBILITY
+        amplifier: 0
+        duration: 999999
+    bossbar-color: WHITE
+    hidden: true
+
+  armageddon:
+    enabled: true
+    type: METEOR_SHOWER
+    duration: 240
+    announcement: "<gradient:dark_red:red>☄ ARMAGEDDON</gradient> <gray>- The sky is falling!"
+    display-name: "ARMAGEDDON"
+    symbol: "☄"
+    weight: 8
+    bossbar-color: RED
+    explosion-power: 4.5
+    break-blocks: true
+    set-fire: true
+    spawn-chance: 80
+    explosion-chance: 75
+    use-falling-blocks: true
+    # Intense, apocalyptic meteor materials - the most dangerous looking
+    meteor-materials:
+      - NETHERITE_BLOCK
+      - OBSIDIAN
+      - CRYING_OBSIDIAN
+      - ANCIENT_DEBRIS
+      - BLACKSTONE
+      - MAGMA_BLOCK
+    start-sound: ENTITY_ENDER_DRAGON_GROWL
+    ambient-sound: ENTITY_GENERIC_EXPLODE
+    ambient-volume: 0.6
+    ambient-pitch: 0.9
+
+  cosmic-bombardment:
+    enabled: true
+    type: METEOR_SHOWER
+    duration: 480
+    announcement: "<gradient:dark_purple:light_purple>☄ Cosmic Bombardment</gradient> <gray>- Meteors from space!"
+    display-name: "Cosmic Bombardment"
+    symbol: "☄"
+    weight: 18
+    bossbar-color: PURPLE
+    explosion-power: 3.5
+    break-blocks: true
+    set-fire: false
+    spawn-chance: 65
+    explosion-chance: 50
+    use-falling-blocks: true
+    # Outer-space / End-themed meteor materials — otherworldly colors
+    meteor-materials:
+      - PURPUR_BLOCK
+      - END_STONE
+      - OBSIDIAN
+      - AMETHYST_BLOCK
+      - CRYING_OBSIDIAN
+      - BLACKSTONE
+    conditions:
+      time: NIGHT
+      weather: CLEAR
+    start-sound: ENTITY_ENDER_DRAGON_GROWL
+    ambient-sound: ENTITY_FIREWORK_ROCKET_LARGE_BLAST
+    ambient-volume: 0.6
+    ambient-pitch: 0.7
+
+  overgrowth:
+    enabled: true
+    type: RAMPANT_GROWTH
+    duration: 300
+    announcement: "<gradient:green:dark_green>🌳 Overgrowth</gradient> <gray>- Nature takes over!"
+    display-name: "Overgrowth"
+    symbol: "🌳"
+    weight: 18
+    bossbar-color: GREEN
+    start-sound: BLOCK_AZALEA_LEAVES_BREAK
+    ambient-sound: BLOCK_GRASS_PLACE
+    ambient-volume: 0.4
+    ambient-pitch: 1.0
+
+  jungle-fever:
+    enabled: true
+    type: RAMPANT_GROWTH
+    duration: 300
+    announcement: "<gradient:green:#55FF55>🌴 Jungle Fever</gradient> <gray>- Rapid plant growth!"
+    display-name: "Jungle Fever"
+    symbol: "🌴"
+    weight: 18
+    bossbar-color: GREEN
+    conditions:
+      weather: RAIN
+    start-sound: BLOCK_BAMBOO_BREAK
+    ambient-sound: BLOCK_VINE_BREAK
+    ambient-volume: 0.3
+    ambient-pitch: 1.1
+
+  scorching-heat:
+    enabled: true
+    type: SOLAR_FLARE
+    duration: 300
+    announcement: "<gradient:red:#FF5500>🔥 Scorching Heat</gradient> <gray>- Extreme heat!"
+    display-name: "Scorching Heat"
+    symbol: "🔥"
+    weight: 16
+    bossbar-color: RED
+    conditions:
+      time: DAY
+      weather: CLEAR
+    fire-ticks: 60
+    start-sound: ITEM_FIRECHARGE_USE
+    ambient-sound: BLOCK_FIRE_AMBIENT
+    ambient-volume: 0.4
+    ambient-pitch: 1.2
+
+  toxic-downpour:
+    enabled: true
+    type: ACID_RAIN
+    duration: 240
+    announcement: "<gradient:green:dark_green>☠ Toxic Downpour</gradient> <gray>- Poisonous rain!"
+    display-name: "Toxic Downpour"
+    symbol: "☠"
+    weight: 14
+    bossbar-color: GREEN
+    conditions:
+      weather: STORM
+    damage: 1.5
+    start-sound: ENTITY_ZOMBIE_VILLAGER_CONVERTED
+    ambient-sound: BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT
+    ambient-volume: 0.5
+    ambient-pitch: 1.8
+
+  timber-time:
+    enabled: true
+    type: GRAVITY_TREES
+    duration: 600
+    announcement: "<gradient:#8B4513:green>🪓 Timber Time</gradient> <gray>- Trees fall naturally!"
+    display-name: "Timber Time"
+    symbol: "🪓"
+    weight: 25
+    bossbar-color: GREEN
+    start-sound: BLOCK_WOOD_FALL

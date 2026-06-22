@@ -1,0 +1,298 @@
+# ============================================================================
+# HORROR.YML - Horror & Atmospheric Tension Events
+# ============================================================================
+#
+# This file contains events designed to create tension, fear, and atmospheric
+# challenges. Many events are "hidden" (no boss bar) for immersive horror.
+#
+# HORROR EVENT DESIGN PRINCIPLES:
+#
+# 1. Hidden Events (hidden: true)
+#    - No boss bar displayed to players
+#    - No announcement message (use announcement: "")
+#    - Players don't know event is active
+#    - Creates uncertainty and tension
+#
+# 2. Ambient Sounds
+#    - Use ambient-sound for continuous atmosphere
+#    - Keep ambient-volume low (0.2-0.4) for subtlety
+#    - Lower ambient-pitch (0.5-0.8) for creepiness
+#
+# 3. Conditions for Maximum Effect
+#    - time: NIGHT - Horror works best at night
+#    - weather: STORM - Storms add to atmosphere
+#    - min-players: 2+ - More players = more fear
+#
+# 4. Event Triggers
+#    - Chain horror events together
+#    - Example: Cursed Forest → Paranoia → The Mist
+#    - Creates escalating tension
+#
+# EVENT TYPES IN THIS FILE:
+#
+# 1. PARANOIA
+#    Description: Random scary sounds played to individual players
+#    Configuration:
+#      sounds:                  # List of sounds to randomly play
+#        - ENTITY_ENDERMAN_STARE
+#        - ENTITY_GHAST_AMBIENT
+#        - AMBIENT_CAVE
+#        - ENTITY_WITHER_AMBIENT
+#      min-interval: 10         # Minimum seconds between sounds
+#      max-interval: 30         # Maximum seconds between sounds
+#    
+#    Horror Tips:
+#      - Always use hidden: true
+#      - Use announcement: "" (empty) for no message
+#      - Sounds play at random intervals per player
+#      - Players won't know if sounds are real or event
+#
+# 2. THE_MIST
+#    Description: Blindness and darkness effects
+#    Configuration:
+#      effects:
+#        - type: BLINDNESS
+#          amplifier: 0
+#        - type: DARKNESS       # 1.19+ only
+#          amplifier: 0
+#    
+#    Horror Tips:
+#      - Reduces visibility dramatically
+#      - Combine with ambient cave sounds
+#      - Can be hidden or visible depending on desired effect
+#      - Great for maze or exploration challenges
+#
+# 3. SILENT_MOBS
+#    Description: Invisible, silent mobs spawn
+#    Configuration:
+#      effects:
+#        - type: INVISIBILITY
+#          amplifier: 0
+#    
+#    Horror Tips:
+#      - Mobs are completely invisible
+#      - Players only know they're there when attacked
+#      - Use hidden: true for maximum surprise
+#      - Best at night in dark areas
+#
+# HORROR EVENT EXAMPLES:
+#
+# Subtle Horror (Players barely notice):
+#   - Midnight Whispers: Rare sounds, hidden, long duration
+#   - Foggy Morning: Light blindness during day
+#
+# Moderate Horror (Players feel uneasy):
+#   - Paranoia: Regular sounds, hidden, night only
+#   - Ghost Town: Invisible mobs, visible boss bar
+#
+# Intense Horror (Players are scared):
+#   - Midnight Terror: Frequent sounds, storm, hidden
+#   - Cursed Forest: Invisible mobs + triggers other events
+#
+# COMBINATION IDEAS:
+#
+# The Perfect Storm:
+#   1. Midnight Terror (hidden paranoia)
+#   2. Triggers → The Mist (blindness)
+#   3. Triggers → Silent Mobs (invisible enemies)
+#   Result: Players hear sounds, can't see, invisible mobs attack
+#
+# Haunted Forest:
+#   1. Cursed Forest (invisible mobs, night)
+#   2. Triggers → Paranoia (scary sounds)
+#   3. Triggers → The Mist (reduced vision)
+#   Result: Escalating horror in forest biomes
+#
+# ============================================================================
+
+events:
+  paranoia:
+    enabled: true
+    type: PARANOIA
+    duration: 300
+    announcement: ""  # Hidden event - no announcement
+    display-name: "Paranoia"
+    symbol: "👁"
+    weight: 15
+    bossbar-color: PURPLE
+    hidden: true
+    conditions:
+      time: NIGHT
+    sounds:
+      - ENTITY_ENDERMAN_STARE
+      - ENTITY_GHAST_AMBIENT
+      - AMBIENT_CAVE
+      - ENTITY_WITHER_AMBIENT
+    min-interval: 10
+    max-interval: 30
+    ambient-sound: ENTITY_PHANTOM_AMBIENT
+    ambient-volume: 0.3
+    ambient-pitch: 0.8
+
+  the-mist:
+    enabled: true
+    type: THE_MIST
+    duration: 240
+    announcement: "<gradient:gray:dark_gray>🌫 The Mist</gradient> <gray>- Darkness falls..."
+    display-name: "The Mist"
+    symbol: "🌫"
+    weight: 12
+    bossbar-color: WHITE
+    start-sound: BLOCK_PORTAL_AMBIENT
+    effects:
+      - type: BLINDNESS
+        amplifier: 0
+        duration: 999999
+      - type: DARKNESS
+        amplifier: 0
+        duration: 999999
+    ambient-sound: ENTITY_WITHER_AMBIENT
+    ambient-volume: 0.2
+    ambient-pitch: 0.5
+
+  silent-mobs:
+    enabled: true
+    type: SILENT_MOBS
+    duration: 360
+    announcement: "<gradient:dark_gray:gray>🔇 Silent Mobs</gradient> <gray>- Invisible hunters..."
+    display-name: "Silent Mobs"
+    symbol: "🔇"
+    weight: 14
+    bossbar-color: PURPLE
+    hidden: true
+    conditions:
+      time: NIGHT
+    effects:
+      - type: INVISIBILITY
+        amplifier: 0
+        duration: 999999
+
+  midnight-whispers:
+    enabled: true
+    type: PARANOIA
+    duration: 600
+    announcement: ""  # Hidden
+    display-name: "Midnight Whispers"
+    symbol: "👻"
+    weight: 10
+    bossbar-color: PURPLE
+    hidden: true
+    conditions:
+      time: NIGHT
+      min-players: 2
+    sounds:
+      - ENTITY_ENDERMAN_STARE
+      - ENTITY_GHAST_AMBIENT
+      - AMBIENT_CAVE
+      - ENTITY_WITHER_AMBIENT
+    min-interval: 15
+    max-interval: 45
+    ambient-sound: ENTITY_WITHER_AMBIENT
+    ambient-volume: 0.2
+    ambient-pitch: 0.6
+
+  midnight-terror:
+    enabled: true
+    type: PARANOIA
+    duration: 420
+    announcement: ""  # Hidden
+    display-name: "Midnight Terror"
+    symbol: "😱"
+    weight: 10
+    bossbar-color: RED
+    hidden: true
+    conditions:
+      time: NIGHT
+      weather: STORM
+      min-players: 2
+    sounds:
+      - ENTITY_WITHER_DEATH
+      - ENTITY_ENDER_DRAGON_GROWL
+      - ENTITY_PHANTOM_SWOOP
+    min-interval: 10
+    max-interval: 30
+    ambient-sound: ENTITY_WITHER_DEATH
+    ambient-volume: 0.2
+    ambient-pitch: 0.6
+
+  foggy-morning:
+    enabled: true
+    type: THE_MIST
+    duration: 180
+    announcement: "<gradient:white:gray>🌫 Foggy Morning</gradient> <gray>- Limited visibility..."
+    display-name: "Foggy Morning"
+    symbol: "🌫"
+    weight: 18
+    bossbar-color: WHITE
+    conditions:
+      time: DAY
+    effects:
+      - type: BLINDNESS
+        amplifier: 0
+        duration: 999999
+    start-sound: BLOCK_BELL_USE
+    ambient-sound: AMBIENT_CAVE
+    ambient-volume: 0.3
+    ambient-pitch: 0.8
+
+  ghost-town:
+    enabled: true
+    type: SILENT_MOBS
+    duration: 480
+    announcement: "<gradient:dark_gray:purple>👻 Ghost Town</gradient> <gray>- Eerie silence..."
+    display-name: "Ghost Town"
+    symbol: "👻"
+    weight: 12
+    bossbar-color: PURPLE
+    hidden: true
+    conditions:
+      time: NIGHT
+    effects:
+      - type: INVISIBILITY
+        amplifier: 0
+        duration: 999999
+    ambient-sound: ENTITY_PHANTOM_FLAP
+    ambient-volume: 0.3
+    ambient-pitch: 0.7
+
+  phantom-invasion:
+    enabled: true
+    type: SILENT_MOBS
+    duration: 300
+    announcement: "<gradient:purple:dark_purple>👻 Phantom Invasion</gradient> <gray>- They're watching..."
+    display-name: "Phantom Invasion"
+    symbol: "🦅"
+    weight: 12
+    bossbar-color: PURPLE
+    conditions:
+      time: NIGHT
+    effects:
+      - type: INVISIBILITY
+        amplifier: 0
+        duration: 999999
+    start-sound: ENTITY_PHANTOM_SWOOP
+
+  cursed-forest:
+    enabled: true
+    type: SILENT_MOBS
+    duration: 420
+    announcement: "<gradient:dark_green:black>🌲 Cursed Forest</gradient> <gray>- Something lurks..."
+    display-name: "Cursed Forest"
+    symbol: "🌲"
+    weight: 14
+    bossbar-color: PURPLE
+    conditions:
+      time: NIGHT
+    effects:
+      - type: INVISIBILITY
+        amplifier: 0
+        duration: 999999
+    start-sound: ENTITY_PHANTOM_AMBIENT
+    ambient-sound: ENTITY_ZOMBIE_VILLAGER_AMBIENT
+    ambient-volume: 0.3
+    ambient-pitch: 0.6
+    triggers:
+      - event: "paranoia"
+        chance: 0.7
+      - event: "the-mist"
+        chance: 0.4

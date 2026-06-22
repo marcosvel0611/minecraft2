@@ -1,0 +1,160 @@
+# World Events CORE Configuration
+# 
+# This file controls the automatic event scheduling system.
+# Upgrade to PRO for: Betting, Voting, Playlists, EventScript, and more!
+# Events are defined in events.yml
+
+# Update Checker
+# Check for new plugin versions on SpigotMC
+# Set to false to disable update notifications
+check-updates: true
+
+scheduling:
+  # Enable or disable automatic event scheduling
+  enabled: true
+  
+  # How often to check and potentially start new events (in minutes)
+  # Recommended: 30-45 for active servers, 60-90 for casual servers
+  # Range: 1-1440 (1 minute to 24 hours)
+  interval-minutes: 30
+  
+  # Maximum number of events that can run simultaneously
+  # With 13 event types, 3-5 concurrent events creates good variety
+  # Range: 1-10
+  max-concurrent-events: 3
+  
+  # Cooldown period before the same event can be selected again (in minutes)
+  # Prevents the same event from repeating too frequently
+  # Set to 0 to disable cooldowns
+  # Range: 0-1440 (0 to 24 hours)
+  event-cooldown-minutes: 60
+  
+  # Number of events to start per scheduling cycle
+  # This creates "event waves" where multiple events start together
+  # Set to 1 for events to start one at a time
+  # Set to 3+ for exciting multi-event periods
+  # Range: 1-5
+  events-per-cycle: 3
+  
+  # Minimum time between individual event starts in a cycle (in seconds)
+  # Adds a small delay between events starting in the same cycle
+  # Creates a more natural flow rather than all events starting instantly
+  # Set to 0 for instant simultaneous starts
+  # Range: 0-60
+  start-delay-seconds: 5
+  
+  # v1.8.4 - Announce scheduled events before they actually begin
+  # Disabled by default so existing timing stays unchanged unless you opt in
+  pre-start-announcements:
+    enabled: false
+    seconds-before-start: 10
+    message: "<gradient:#FFD700:#FFA500><bold>%symbol% Upcoming Event</bold></gradient> <dark_gray>»</dark_gray> <yellow>%event%</yellow> <gray>starts in</gray> <aqua><bold>%time%s</bold></aqua><gray>.</gray>"
+
+  # Pause scheduling if real TPS is below a certain threshold
+  pause-if-low-tps: false
+  pause-events-tps-threshold: 18.0
+
+# Boss bar configuration
+boss-bar:
+  # Show boss bar for active events
+  enabled: true
+  
+  # Update boss bar progress every X ticks (20 ticks = 1 second)
+  # Lower values = smoother progress bar, slightly more CPU usage
+  # Higher values = choppier progress bar, less CPU usage
+  # Range: 10-40 (0.5-2 seconds)
+  update-interval-ticks: 20
+
+  # How often to rotate through active events (in ticks)
+  # 100 ticks = 5 seconds
+  rotation-interval-ticks: 100
+  
+  # Text to append when multiple events are active
+  # Use {count} for the number of other hidden events
+  multiple-events-suffix: " &7(+{count} others)"
+
+# Announcement configuration
+announcements:
+  # Send announcement messages when events start
+  enabled: true
+  
+  # Also send a message when events end
+  send-end-message: true
+  
+  # End message format (use %event% for event name)
+  end-message-format: "<gradient:#FFD700:#FFA500><bold>WorldEvents</bold></gradient> <dark_gray>»</dark_gray> <yellow>%event%</yellow> <gray>has ended.</gray>"
+  
+  # Play sound when events start (set to "" to disable)
+  # Valid sounds: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+  start-sound: "ENTITY_PLAYER_LEVELUP"
+  
+  # Play sound when events end (set to "" to disable)
+  end-sound: "BLOCK_NOTE_BLOCK_PLING"
+  
+  # Sound volume (0.0-1.0)
+  sound-volume: 0.5
+  
+  # Sound pitch (0.5-2.0)
+  sound-pitch: 1.0
+
+# v1.7.8 - Countdown warnings before events end
+countdown-warnings:
+  # Enable countdown warning broadcasts
+  enabled: true
+  
+  # Seconds before event ends to broadcast warnings (comma-separated)
+  times: [30, 10, 5]
+  
+  # Warning message format (MiniMessage supported)
+  # Use %event% for event display name, %time% for seconds remaining
+  message: "<gradient:#FFD700:#FFA500><bold>WorldEvents</bold></gradient> <dark_gray>»</dark_gray> <yellow>%event%</yellow> <gray>will end in</gray> <red>%time%</red> <gray>seconds.</gray>"
+
+# Performance and optimization
+performance:
+  # Enable async event selection (improves performance on large servers)
+  async-event-selection: true
+  
+  # Maximum time to spend selecting events per cycle (in milliseconds)
+  # Prevents lag spikes on servers with many events configured
+  max-selection-time-ms: 50
+
+# v1.7.18 - World Settings
+# Enable or disable events for specific worlds
+# Players in disabled worlds won't see boss bars, receive effects, or get notifications
+world-settings:
+  # Default settings for all worlds not explicitly listed
+  default:
+    enabled: true
+  
+  # Example: Disable events in the nether
+  # world_nether:
+  #   enabled: false
+  
+  # Example: Disable events in the end
+  # world_the_end:
+  #   enabled: false
+  
+  # Example: Enable only in the main world (disable in all others)
+  # To do this: set default.enabled to false, then enable specific worlds
+  # default:
+  #   enabled: false
+  # world:
+  #   enabled: true
+
+# Debug and logging
+debug:
+  # Log detailed event scheduling information
+  verbose-logging: false
+  
+  # Log event selection process (useful for troubleshooting weights)
+  log-event-selection: false
+  
+  # Log cooldown information
+  log-cooldowns: false
+
+# Integration hooks configuration
+hooks:
+  griefprevention:
+    # Set to true to allow events to affect claims (bypass protection)
+    # Default: false (events are blocked in claims)
+    ignore-claims: false

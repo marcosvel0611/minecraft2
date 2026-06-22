@@ -1,0 +1,192 @@
+[18:53:11] [ServerMain/INFO]: [bootstrap] Running Java 21 (OpenJDK 64-Bit Server VM 21.0.10+7-Ubuntu-124.04; Ubuntu null) on Linux 6.8.0-1052-azure (amd64)
+[18:53:11] [ServerMain/INFO]: [bootstrap] Loading Paper 1.21.10-117-ver/1.21.10@df4b668 (2025-11-30T22:37:28Z) for Minecraft 1.21.10
+[18:53:11] [ServerMain/INFO]: [PluginInitializerManager] Initializing plugins...
+[18:53:16] [ServerMain/INFO]: [PluginInitializerManager] Initialized 8 plugins
+[18:53:16] [ServerMain/INFO]: [PluginInitializerManager] Bukkit plugins (8):
+ - Geyser-Spigot (2.9.5-SNAPSHOT), ProtocolLib (5.4.0), SkinsRestorer (15.12.0), ViaBackwards (5.9.0), ViaVersion (5.9.0), WorldEvents (1.8.6), YamipaPlugin (1.4.1), floodgate (2.2.5-SNAPSHOT (b132-5a72b6a))
+[18:53:21] [ServerMain/WARN]: resource-pack-id missing, using default of 099454ab-4c29-3fa7-8ff1-8edfed1493c0
+[18:53:22] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[18:53:29] [ServerMain/INFO]: Loaded 1494 recipes
+[18:53:29] [ServerMain/INFO]: Loaded 1902 advancements
+[18:53:29] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[18:53:30] [ServerMain/INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 305.9ms
+[18:53:30] [ServerMain/WARN]: resource-pack-id missing, using default of 099454ab-4c29-3fa7-8ff1-8edfed1493c0
+[18:53:30] [Server thread/INFO]: Starting minecraft server version 1.21.10
+[18:53:30] [Server thread/INFO]: Loading properties
+[18:53:30] [Server thread/INFO]: This server is running Paper version 1.21.10-117-ver/1.21.10@df4b668 (2025-11-30T22:37:28Z) (Implementing API version 1.21.10-R0.1-SNAPSHOT)
+[18:53:30] [Server thread/INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[18:53:30] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[18:53:30] [Server thread/INFO]: Using 4 threads for Netty based IO
+[18:53:31] [Server thread/INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[18:53:32] [Server thread/INFO]: Default game type: SURVIVAL
+[18:53:32] [Server thread/INFO]: Generating keypair
+[18:53:32] [Server thread/INFO]: Starting Minecraft server on *:25565
+[18:53:32] [Server thread/INFO]: Using epoll channel type
+[18:53:32] [Server thread/INFO]: Paper: Using libdeflate (Linux x86_64) compression from Velocity.
+[18:53:32] [Server thread/INFO]: Paper: Using OpenSSL 3.x.x (Linux x86_64) cipher from Velocity.
+[18:53:32] [Server thread/INFO]: [ViaVersion] Loading server plugin ViaVersion v5.9.0
+[18:53:32] [Server thread/INFO]: [ViaVersion] ViaVersion 5.9.0 is now loaded. Registering protocol transformers and injecting...
+[18:53:33] [Via-Mappingloader-1/INFO]: [ViaVersion] Loading block connection mappings ...
+[18:53:33] [Via-Mappingloader-1/INFO]: [ViaVersion] Using FastUtil Long2ObjectOpenHashMap for block connections
+[18:53:33] [Server thread/INFO]: [ViaBackwards] Loading translations...
+[18:53:33] [Server thread/INFO]: [ViaBackwards] Registering protocols...
+[18:53:34] [Server thread/INFO]: [floodgate] Loading server plugin floodgate v2.2.5-SNAPSHOT (b132-5a72b6a)
+[18:53:35] [Server thread/WARN]: [floodgate] en_ is not a supported Floodgate language.
+[18:53:35] [Server thread/INFO]: [floodgate] Took 1,041ms to boot Floodgate
+[18:53:35] [Server thread/INFO]: [ProtocolLib] Loading server plugin ProtocolLib v5.4.0
+[18:53:35] [Server thread/WARN]: [ProtocolLib] Version (MC: 1.21.10) has not yet been tested! Proceed with caution.
+[18:53:35] [Server thread/INFO]: [ViaBackwards] Loading server plugin ViaBackwards v5.9.0
+[18:53:35] [Server thread/INFO]: [SkinsRestorer] Loading server plugin SkinsRestorer v15.12.0
+[18:53:35] [Server thread/INFO]: [Geyser-Spigot] Loading server plugin Geyser-Spigot v2.9.5-SNAPSHOT
+[18:53:36] [Server thread/INFO]: [Geyser-Spigot] Loading extensions...
+[18:53:36] [Server thread/INFO]: [Geyser-Spigot] Loaded 0 extension(s)
+[18:53:36] [Server thread/INFO]: [YamipaPlugin] Loading server plugin YamipaPlugin v1.4.1
+[18:53:36] [Server thread/INFO]: [WorldEvents] Loading server plugin WorldEvents v1.8.6
+[18:53:36] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[18:53:36] [Server thread/INFO]: [ProtocolLib] Enabling ProtocolLib v5.4.0
+[18:53:36] [Server thread/INFO]: [SkinsRestorer] Enabling SkinsRestorer v15.12.0
+[18:53:37] [Server thread/INFO]: [SkinsRestorer] Running on Minecraft 1.21.10.
+[18:53:37] [Server thread/INFO]: [SkinsRestorer] Floodgate skin listener registered
+[18:53:37] [Server thread/INFO]: [SkinsRestorer] Using paper join listener!
+[18:53:37] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[18:53:37] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[18:53:37] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[18:53:37] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[18:53:37] [Server thread/INFO]: Preparing level "world"
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] ----------------------------------------------
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer]     +==================+
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer]     |   SkinsRestorer  |
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer]     |------------------|
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer]     |  Standalone Mode |
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer]     +==================+
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] ----------------------------------------------
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer]     Version: 15.12.0
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer]     Commit: 2903414
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer]     A new version (15.12.3) is available! Downloading update...
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] ----------------------------------------------
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] Do you have issues? Read our troubleshooting guide: https://skinsrestorer.net/docs/troubleshooting
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] Want to support SkinsRestorer or receive priority support? Become a supporter: https://skinsrestorer.net/pricing
+[18:53:37] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] [GitHubUpdate] Downloading update...
+[18:53:38] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] [GitHubUpdate] Downloaded update in 614ms
+[18:53:38] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] [GitHubUpdate] Update saved as SkinsRestorer.jar
+[18:53:38] [Folia Async Scheduler Thread #1/INFO]: [SkinsRestorer] [GitHubUpdate] The update will be loaded on the next server restart
+[18:53:39] [Server thread/INFO]: Loading 25 persistent chunks for world 'minecraft:overworld'...
+[18:53:39] [Server thread/INFO]: Preparing spawn area: 28%
+[18:53:39] [Server thread/INFO]: Preparing spawn area: 28%
+[18:53:40] [Server thread/INFO]: Preparing spawn area: 88%
+[18:53:40] [Server thread/INFO]: Prepared spawn area in 1351 ms
+[18:53:40] [Server thread/INFO]: Loading 0 persistent chunks for world 'minecraft:the_nether'...
+[18:53:40] [Server thread/INFO]: Prepared spawn area in 0 ms
+[18:53:40] [Server thread/INFO]: Loading 0 persistent chunks for world 'minecraft:the_end'...
+[18:53:40] [Server thread/INFO]: Prepared spawn area in 0 ms
+[18:53:40] [Server thread/INFO]: Done preparing level "world" (2.616s)
+[18:53:40] [Server thread/INFO]: [ViaVersion] Enabling ViaVersion v5.9.0
+[18:53:40] [Server thread/INFO]: [ViaVersion] ViaVersion detected server version: 1.21.9-1.21.10 (773)
+[18:53:40] [Server thread/INFO]: [floodgate] Enabling floodgate v2.2.5-SNAPSHOT (b132-5a72b6a)
+[18:53:40] [Server thread/INFO]: [ViaBackwards] Enabling ViaBackwards v5.9.0
+[18:53:40] [Server thread/INFO]: [Geyser-Spigot] Enabling Geyser-Spigot v2.9.5-SNAPSHOT
+[18:53:42] [Server thread/INFO]: [YamipaPlugin] Enabling YamipaPlugin v1.4.1
+[18:53:42] [Server thread/INFO]: [YamipaPlugin] Enabled image animation support
+[18:53:42] [Server thread/INFO]: [YamipaPlugin] [ImageRenderer] No placed fake images configuration file found
+[18:53:42] [Thread-11/WARN]: [YamipaPlugin] [FileSystemWatcher] Device does not support inotify, detection of file changes will be slower
+[18:53:42] [Server thread/INFO]: [WorldEvents] Enabling WorldEvents v1.8.6
+[18:53:42] [Server thread/INFO]: [WorldEvents] Running on Paper - WorldEvents Core
+[18:53:42] [Server thread/INFO]: [WorldEvents] First run detected. Creating default configuration files...
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loading scheduling configuration from /workspaces/minecraft2/servidor_minecraft/plugins/WorldEvents/config.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Scheduling enabled: true
+[18:53:42] [Server thread/INFO]: [WorldEvents] Scheduling interval: 30-60 minutes
+[18:53:42] [Server thread/INFO]: [WorldEvents] Using legacy interval: 30 minutes
+[18:53:42] [Server thread/INFO]: [WorldEvents] Max concurrent events: 3
+[18:53:42] [Server thread/INFO]: [WorldEvents] Event cooldown: 60 minutes
+[18:53:42] [Server thread/INFO]: [WorldEvents] Events per cycle: 3
+[18:53:42] [Server thread/INFO]: [WorldEvents] Start delay: 5 seconds
+[18:53:42] [Server thread/INFO]: [WorldEvents] Language set to: en
+[18:53:42] [Server thread/INFO]: [WorldEvents] Boss Bar enabled: true
+[18:53:42] [Server thread/INFO]: [WorldEvents] Countdown warnings enabled: true (at [30, 10, 5] seconds)
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded scheduling configuration: SchedulingConfig{enabled=true, intervalMinutes=30, minIntervalMinutes=30, maxIntervalMinutes=30, maxConcurrentEvents=3, cooldownMinutes=60, eventsPerCycle=3, startDelaySeconds=5, preStartAnnouncementEnabled=false, preStartAnnouncementSeconds=10}
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loading events from 7 file(s) in events/ folder...
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 10 event(s) from farming.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 15 event(s) from weather.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 21 event(s) from mining.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 26 event(s) from combat.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 9 event(s) from horror.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 11 event(s) from special.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 14 event(s) from buffs.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Total events loaded: 106
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded messages from messages_en.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded messages from messages_en.yml
+[18:53:42] [Server thread/INFO]: [WorldEvents] YamlStorage initialized
+[18:53:42] [Server thread/INFO]: [WorldEvents] No player preferences found in player_preferences.yml (file is empty or new)
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 0 player preference(s) from YAML
+[18:53:42] [Server thread/INFO]: [WorldEvents] PlaceholderAPI not found. Placeholders will not be replaced.
+[18:53:42] [Server thread/INFO]: [WorldEvents] [MythicMobs] Not found. Custom mob spawning via MythicMobs is disabled.
+[18:53:42] [Server thread/INFO]: [WorldEvents] Floodgate hook enabled - Bedrock player detection available
+[18:53:42] [Server thread/INFO]: [WorldEvents] Vault not found - economy rewards disabled
+[18:53:42] [Server thread/INFO]: [WorldEvents] Set max simultaneous events to: 3
+[18:53:42] [Server thread/INFO]: [WorldEvents] Updated scheduling configuration: enabled=true, interval=30min, maxEvents=3, cooldown=60min
+[18:53:42] [Server thread/INFO]: [WorldEvents] Loaded 6 loot pool(s)
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: POTION_EFFECT
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: MODIFY_BLOCK_DROPS
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: BUFF_SPAWNED_MOBS
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: CONSOLE_COMMAND
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: XP_MULTIPLIER
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: DURABILITY_PROTECTION
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: VAMPIRISM
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: MOB_LOOT_MULTIPLIER
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: DAMAGE_IMMUNITY
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: AUTO_SMELT
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: BUMPER_HARVEST
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: TREE_FELLER
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: FISHING_FORTUNE
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: GRAVITY_TREES
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: SILENT_MOBS
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: ACID_RAIN
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: SOLAR_FLARE
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: PARANOIA
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: THE_MIST
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: METEOR_SHOWER
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: RAMPANT_GROWTH
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: MOB_SPAWN_MULTIPLIER
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: MOB_WAVE
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: EXPLODING_MOBS
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: LOW_GRAVITY
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: VOLATILE_CHICKENS
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: THE_FLOOR_IS_LAVA
+[18:53:42] [Server thread/INFO]: [WorldEvents] Registered effect handler and listener for type: TREASURE_HUNT
+[18:53:42] [Server thread/INFO]: [WorldEvents] Next event cycle scheduled in 30 minutes (36000 ticks)
+[18:53:42] [Server thread/INFO]: [WorldEvents] Event scheduler started
+[18:53:42] [Server thread/INFO]: [WorldEvents] bStats metrics initialized
+[18:53:42] [Server thread/INFO]: [WorldEvents] WorldEvents Core v1.8.6 enabled!
+[18:53:42] [Server thread/INFO]: [spark] Starting background profiler...
+[18:53:44] [Server thread/INFO]: [Geyser-Spigot] ******************************************
+[18:53:44] [Server thread/INFO]: [Geyser-Spigot] 
+[18:53:44] [Server thread/INFO]: [Geyser-Spigot] Loading Geyser version 2.9.5-b1113 (git-master-3e91129)
+[18:53:44] [Server thread/INFO]: [Geyser-Spigot] 
+[18:53:44] [Server thread/INFO]: [Geyser-Spigot] ******************************************
+[18:53:47] [GeyserServer-3-1/INFO]: [Geyser-Spigot] Started Geyser on UDP port 7122
+[18:53:47] [Server thread/INFO]: [Geyser-Spigot] Done (3.691s)! Run /geyser help for help!
+[18:53:47] [ForkJoinPool.commonPool-worker-1/INFO]: [Geyser-Spigot] There's a new Geyser update available to support Bedrock version 26.30. Download it here: https://geysermc.org/download
+[18:53:47] [Server thread/INFO]: Running delayed init tasks
+[18:53:47] [Craft Scheduler Thread - 2 - ViaVersion/INFO]: [ViaVersion] Finished mapping loading, shutting down loader executor.
+[18:53:48] [Server thread/INFO]: Done (38.406s)! For help, type "help"
+[18:53:48] [Server thread/WARN]: [ViaVersion] There is a newer plugin version available: 5.10.0, you're on: 5.9.0
+[18:53:48] [Craft Scheduler Thread - 1 - WorldEvents/INFO]: [WorldEvents] A new version is available: 1.8.19 (Current: 1.8.6)
+[18:54:30] [Server thread/INFO]: TPS from last 1m, 5m, 15m: 20.0, 20.0, 20.0
+[18:58:09] [User Authenticator #0/INFO]: UUID of player Marcos_vel2 is 1bf00b26-b3ad-34da-99b3-4b5af65e7add
+[18:58:09] [Server thread/INFO]: [HorriblePlayerLoginEventHack] You have plugins listening to the PlayerLoginEvent, this will cause re-configuration APIs to be unavailable: [ProtocolLib]
+[18:58:29] [Server thread/INFO]: Marcos_vel2 joined the game
+[18:58:29] [Server thread/INFO]: Marcos_vel2[/127.13.199.37:46031] logged in with entity id 9 at ([world]576.8825286357941, 81.0, 925.4543961783561)
+[19:09:25] [Server thread/INFO]: TPS from last 1m, 5m, 15m: 20.0, 20.0, 20.0
+[19:23:48] [Server thread/INFO]: [WorldEvents] Executing event: fall-protection (ID: fall-protection_1782156228889, type: DAMAGE_IMMUNITY, duration: 420s)
+[19:23:48] [Server thread/INFO]: [WorldEvents] Successfully started event: fall-protection (ID: fall-protection_1782156228889, duration: 420 seconds, active events: 1/3)
+[19:23:48] [Server thread/INFO]: [WorldEvents] Next event cycle scheduled in 30 minutes (36000 ticks)
+[19:23:53] [Server thread/INFO]: [WorldEvents] Executing event: bumper_harvest (ID: bumper_harvest_1782156233885, type: BUMPER_HARVEST, duration: 300s)
+[19:23:53] [Server thread/INFO]: [WorldEvents] Successfully started event: bumper_harvest (ID: bumper_harvest_1782156233885, duration: 300 seconds, active events: 2/3)
+[19:23:58] [Server thread/INFO]: [WorldEvents] Executing event: fire-resistance (ID: fire-resistance_1782156238884, type: POTION_EFFECT, duration: 360s)
+[19:23:58] [Server thread/INFO]: [com.worldevents.handlers.PotionEffectHandler] Activating potion effect handler for event: fire-resistance
+[19:23:58] [Server thread/INFO]: [com.worldevents.handlers.PotionEffectHandler] Applied 1 potion effect(s) to 1/1 player(s) for event: fire-resistance (active potion events: 1)
+[19:23:58] [Server thread/INFO]: [WorldEvents] Successfully started event: fire-resistance (ID: fire-resistance_1782156238884, duration: 360 seconds, active events: 3/3)
+[19:28:53] [Server thread/INFO]: [WorldEvents] Stopped event: bumper_harvest (ID: bumper_harvest_1782156233885)
+[19:29:58] [Server thread/INFO]: [com.worldevents.handlers.PotionEffectHandler] Deactivating potion effect handler for event: fire-resistance
+[19:29:58] [Server thread/INFO]: [WorldEvents] Stopped event: fire-resistance (ID: fire-resistance_1782156238884)
+[19:30:48] [Server thread/INFO]: [WorldEvents] Stopped event: fall-protection (ID: fall-protection_1782156228889)

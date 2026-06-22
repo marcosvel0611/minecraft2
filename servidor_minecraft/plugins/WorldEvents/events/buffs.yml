@@ -1,0 +1,351 @@
+# ============================================================================
+# BUFFS.YML - Positive Buff Events
+# ============================================================================
+#
+# This file contains events that apply beneficial potion effects to players.
+# These events help players by giving them temporary advantages.
+#
+# EVENT TYPE: POTION_EFFECT
+# Description: Applies one or more potion effects to all online players
+# 
+# Configuration Options:
+#   effects:                    # List of potion effects to apply
+#     - type: EFFECT_NAME       # Potion effect type (see list below)
+#       amplifier: 0            # Effect strength (0 = level 1, 1 = level 2, etc.)
+#       duration: 300           # Duration in seconds
+#
+# Available Potion Effects:
+#   SPEED                - Increased movement speed
+#   SLOW                 - Decreased movement speed
+#   FAST_DIGGING         - Faster mining (Haste)
+#   SLOW_DIGGING         - Slower mining (Mining Fatigue)
+#   INCREASE_DAMAGE      - Increased melee damage (Strength)
+#   HEAL                 - Instant health
+#   HARM                 - Instant damage
+#   JUMP_BOOST           - Higher jumping
+#   CONFUSION            - Nausea effect
+#   REGENERATION         - Health regeneration over time
+#   DAMAGE_RESISTANCE    - Reduced damage taken (Resistance)
+#   FIRE_RESISTANCE      - Immunity to fire and lava
+#   WATER_BREATHING      - Breathe underwater
+#   INVISIBILITY         - Become invisible
+#   BLINDNESS            - Reduced vision
+#   NIGHT_VISION         - See in the dark
+#   HUNGER               - Increased hunger
+#   WEAKNESS             - Reduced melee damage
+#   POISON               - Damage over time
+#   WITHER               - Wither effect (damage over time)
+#   HEALTH_BOOST         - Increased max health
+#   ABSORPTION           - Extra absorption hearts
+#   SATURATION           - Instant food restoration
+#   GLOWING              - Glowing outline effect
+#   LEVITATION           - Float upwards
+#   LUCK                 - Better loot chances
+#   UNLUCK               - Worse loot chances
+#   SLOW_FALLING         - Fall slowly
+#   CONDUIT_POWER        - Underwater mining speed + vision
+#   DOLPHINS_GRACE       - Faster swimming
+#   BAD_OMEN             - Triggers raids in villages
+#   HERO_OF_THE_VILLAGE  - Villager discounts
+#   DARKNESS             - Darkness effect (1.19+)
+#
+# Tips:
+#   - Combine multiple effects for unique experiences
+#   - Use conditions to make events time/weather specific
+#   - Higher amplifiers = stronger effects (but can be overpowered!)
+#   - Duration should match the event duration for consistency
+#
+# ============================================================================
+
+events:
+  speed-boost:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 300
+    announcement: "<gradient:yellow:gold>⚡ Speed Boost</gradient> <gray>- Move faster!"
+    display-name: "<gradient:yellow:gold>⚡ Speed Boost</gradient>"
+    symbol: "⚡"
+    weight: 30
+    bossbar-color: YELLOW
+    start-sound: ENTITY_PLAYER_LEVELUP
+    effects:
+      - type: SPEED
+        amplifier: 1
+        duration: 300
+      - type: JUMP_BOOST
+        amplifier: 2
+        duration: 300
+
+  night-vision:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 360
+    announcement: "<gradient:blue:aqua>✦ Night Vision</gradient> <gray>- See in the dark!"
+    display-name: "<gradient:blue:aqua>✦ Night Vision</gradient>"
+    symbol: "✦"
+    weight: 35
+    bossbar-color: BLUE
+    start-sound: BLOCK_BEACON_ACTIVATE
+    effects:
+      - type: NIGHT_VISION
+        amplifier: 0
+        duration: 360
+
+  haste-mining:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 420
+    announcement: "<gradient:yellow:#FF5500>⚒ Haste Mining</gradient> <gray>- Mine faster!"
+    display-name: "<gradient:yellow:#FF5500>⚒ Haste Mining</gradient>"
+    symbol: "⚒"
+    weight: 32
+    bossbar-color: YELLOW
+    start-sound: BLOCK_ANVIL_USE
+    effects:
+      - type: FAST_DIGGING
+        amplifier: 1
+        duration: 420
+
+  water-breathing:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 480
+    announcement: "<gradient:blue:aqua>🌊 Water Breathing</gradient> <gray>- Explore the depths!"
+    display-name: "<gradient:blue:aqua>🌊 Water Breathing</gradient>"
+    symbol: "🌊"
+    weight: 25
+    bossbar-color: BLUE
+    start-sound: ENTITY_PLAYER_SPLASH
+    effects:
+      - type: WATER_BREATHING
+        amplifier: 0
+        duration: 480
+
+  regeneration:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 240
+    announcement: "<gradient:#FF69B4:#FF55FF>❤ Regeneration</gradient> <gray>- Heal over time!"
+    display-name: "<gradient:#FF69B4:#FF55FF>❤ Regeneration</gradient>"
+    symbol: "❤"
+    weight: 20
+    bossbar-color: PINK
+    start-sound: BLOCK_BEACON_POWER_SELECT
+    effects:
+      - type: REGENERATION
+        amplifier: 1
+        duration: 240
+
+  resistance:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 300
+    announcement: "<gradient:white:gray>🛡 Resistance</gradient> <gray>- Take less damage!"
+    display-name: "<gradient:white:gray>🛡 Resistance</gradient>"
+    symbol: "🛡"
+    weight: 22
+    bossbar-color: WHITE
+    start-sound: ITEM_SHIELD_BLOCK
+    effects:
+      - type: DAMAGE_RESISTANCE
+        amplifier: 0
+        duration: 300
+
+  fire-resistance:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 360
+    announcement: "<gradient:red:#FF5500>🔥 Fire Resistance</gradient> <gray>- Immune to fire!"
+    display-name: "<gradient:red:#FF5500>🔥 Fire Resistance</gradient>"
+    symbol: "🔥"
+    weight: 28
+    bossbar-color: RED
+    start-sound: ITEM_FIRECHARGE_USE
+    effects:
+      - type: FIRE_RESISTANCE
+        amplifier: 0
+        duration: 360
+
+  strength-boost:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 240
+    announcement: "<gradient:red:dark_red>💪 Strength</gradient> <gray>- Deal more damage!"
+    display-name: "<gradient:red:dark_red>💪 Strength</gradient>"
+    symbol: "💪"
+    weight: 18
+    bossbar-color: RED
+    start-sound: ENTITY_ZOMBIE_ATTACK_IRON_DOOR
+    effects:
+      - type: STRENGTH
+        amplifier: 1
+        duration: 240
+
+  ocean-explorer:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 600
+    announcement: "<gradient:blue:aqua>🌊 Ocean Explorer</gradient> <gray>- Master the seas!"
+    display-name: "<gradient:blue:aqua>🌊 Ocean Explorer</gradient>"
+    symbol: "🌊"
+    weight: 24
+    bossbar-color: BLUE
+    effects:
+      - type: WATER_BREATHING
+        amplifier: 0
+        duration: 600
+      - type: DOLPHINS_GRACE
+        amplifier: 2
+        duration: 600
+      - type: NIGHT_VISION
+        amplifier: 0
+        duration: 600
+    start-sound: ENTITY_DOLPHIN_AMBIENT
+    ambient-sound: AMBIENT_UNDERWATER_LOOP
+    ambient-volume: 0.3
+
+  peaceful-paradise:
+    enabled: true
+    type: POTION_EFFECT
+    duration: 480
+    announcement: "<gradient:#FF69B4:#FF55FF>✨ Peaceful Paradise</gradient> <gray>- Total relaxation!"
+    display-name: "<gradient:#FF69B4:#FF55FF>✨ Peaceful Paradise</gradient>"
+    symbol: "✨"
+    weight: 20
+    bossbar-color: PINK
+    conditions:
+      time: DAY
+      weather: CLEAR
+    effects:
+      - type: REGENERATION
+        amplifier: 1
+        duration: 480
+      - type: DAMAGE_RESISTANCE
+        amplifier: 0
+        duration: 480
+      - type: SATURATION
+        amplifier: 0
+        duration: 480
+    start-sound: BLOCK_AMETHYST_BLOCK_CHIME
+    ambient-sound: BLOCK_AMETHYST_CLUSTER_BREAK
+    ambient-volume: 0.3
+    ambient-pitch: 1.5
+
+  # MiniMessage showcase events (disabled by default)
+  rainbow-boost:
+    enabled: false
+    type: POTION_EFFECT
+    duration: 300
+    announcement: "<gradient:red:yellow:green:blue:purple>🌈 Rainbow Boost!</gradient>"
+    display-name: "<rainbow>🌈 Rainbow Boost</rainbow>"
+    symbol: "🌈"
+    weight: 20
+    bossbar-color: PURPLE
+    start-sound: ENTITY_PLAYER_LEVELUP
+    effects:
+      - type: SPEED
+        amplifier: 2
+        duration: 300
+      - type: JUMP_BOOST
+        amplifier: 2
+        duration: 300
+
+  neon-night:
+    enabled: false
+    type: POTION_EFFECT
+    duration: 240
+    announcement: "<gradient:#FF00FF:#00FFFF>★ Neon Night Vision!</gradient>"
+    display-name: "<gradient:#FF00FF:#00FFFF><bold>★ Neon Night</bold></gradient>"
+    symbol: "★"
+    weight: 25
+    bossbar-color: PURPLE
+    start-sound: BLOCK_BEACON_ACTIVATE
+    effects:
+      - type: NIGHT_VISION
+        amplifier: 0
+        duration: 240
+      - type: GLOWING
+        amplifier: 0
+        duration: 240
+
+  # ============================================================================
+  # v1.7.5 - BUFF_SPAWNED_MOBS Examples with Spawn Filters and Loot Pools
+  # ============================================================================
+  #
+  # These events demonstrate the new spawn filter system that prevents farm abuse
+  # by only applying buffs to naturally spawned mobs.
+  #
+  # allowed-spawn-reasons: Only mobs spawning via these reasons receive buffs
+  # blocked-spawn-reasons: Mobs spawning via these reasons are ignored
+  # loot-pool: Name of loot pool to use for equipment (from loot-pools folder)
+  #
+  # ============================================================================
+
+  elite-monsters:
+    enabled: false
+    type: BUFF_SPAWNED_MOBS
+    duration: 600
+    announcement: "<gradient:red:dark_red>💀 Elite Monsters</gradient> <gray>- Stronger mobs roam the land!"
+    display-name: "Elite Monsters"
+    symbol: "💀"
+    weight: 15
+    bossbar-color: RED
+    start-sound: ENTITY_ENDER_DRAGON_GROWL
+    # v1.7.5 - Only apply to naturally spawned mobs (prevents farm abuse)
+    allowed-spawn-reasons:
+      - NATURAL
+      - RAID
+      - PATROL
+    # Target hostile mobs
+    target-mobs:
+      - ZOMBIE
+      - SKELETON
+      - CREEPER
+      - SPIDER
+      - WITCH
+    # Buff attributes (uses version-agnostic resolution)
+    attributes:
+      max_health: 2.0    # Double health
+      attack_damage: 1.5 # 50% more damage
+    # Visual effects
+    glowing: true
+    # Equipment from loot pool
+    loot-pool: "weapons"
+
+  armored-undead:
+    enabled: false
+    type: BUFF_SPAWNED_MOBS
+    duration: 480
+    announcement: "<gradient:gray:dark_gray>🛡 Armored Undead</gradient> <gray>- The dead rise well-equipped!"
+    display-name: "Armored Undead"
+    symbol: "🛡"
+    weight: 12
+    bossbar-color: WHITE
+    start-sound: ENTITY_ZOMBIE_BREAK_WOODEN_DOOR
+    # v1.7.5 - Block spawner/egg spawns to prevent exploitation
+    blocked-spawn-reasons:
+      - SPAWNER
+      - SPAWNER_EGG
+      - CUSTOM
+      - COMMAND
+    target-mobs:
+      - ZOMBIE
+      - SKELETON
+      - HUSK
+      - STRAY
+      - DROWNED
+    # Potion effects on mobs
+    effects:
+      - type: FIRE_RESISTANCE
+        amplifier: 0
+        duration: 999999
+      - type: DAMAGE_RESISTANCE
+        amplifier: 0
+        duration: 999999
+    # Equipment from iron tier loot pool
+    loot-pool: "iron"
+    equipment:
+      helmet: "IRON_HELMET:0.8"
+      chestplate: "IRON_CHESTPLATE:0.6"
+      leggings: "IRON_LEGGINGS:0.6"
+      boots: "IRON_BOOTS:0.8"

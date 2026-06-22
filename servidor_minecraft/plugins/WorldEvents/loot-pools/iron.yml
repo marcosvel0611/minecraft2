@@ -1,0 +1,54 @@
+# ============================================================================
+# IRON.YML - Iron Equipment Loot Pool
+# ============================================================================
+#
+# Standard iron tier equipment for mob spawning events.
+# Reference in events with: loot-pool: iron:3:25
+#   Format: poolname:itemlimit:chance
+#   - poolname: Name of this loot pool file (without .yml)
+#   - itemlimit: Maximum number of items to generate (1-6 for equipment)
+#   - chance: Base percentage chance for each generation attempt (0-100)
+#
+# ============================================================================
+
+display-name: "Iron Equipment"
+description: "Standard iron armor and weapons for buffed mobs"
+
+items:
+  # Armor pieces
+  - item: IRON_HELMET
+    amount: 1
+    chance: 0.8    # 80% chance when selected
+    weight: 1.0    # Equal selection weight
+    
+  - item: IRON_CHESTPLATE
+    amount: 1
+    chance: 0.8
+    weight: 1.0
+    
+  - item: IRON_LEGGINGS
+    amount: 1
+    chance: 0.8
+    weight: 1.0
+    
+  - item: IRON_BOOTS
+    amount: 1
+    chance: 0.8
+    weight: 1.0
+    
+  # Weapons
+  - item: IRON_SWORD
+    amount: 1
+    chance: 0.9
+    weight: 1.5    # Higher weight = more likely to be selected
+    
+  - item: IRON_AXE
+    amount: 1
+    chance: 0.7
+    weight: 0.8
+    
+  # Off-hand
+  - item: SHIELD
+    amount: 1
+    chance: 0.6
+    weight: 0.7

@@ -1,0 +1,390 @@
+# ============================================================================
+# MINING.YML - Mining & Resource Gathering Events
+# ============================================================================
+#
+# This file contains events that enhance mining, resource gathering,
+# XP gains, durability, and block drops.
+#
+# EVENT TYPES IN THIS FILE:
+#
+# 1. MODIFY_BLOCK_DROPS
+#    Description: Change what items drop when blocks are broken
+#    Configuration:
+#      target-blocks:           # List of blocks to modify
+#        - DIAMOND_ORE
+#        - DEEPSLATE_DIAMOND_ORE
+#      custom-drops:            # List of custom drops
+#        - material: DIAMOND
+#          amount: 3            # Amount to drop
+#          chance: 1.0          # Drop chance (0.0-1.0, where 1.0 = 100%)
+#
+# 2. XP_MULTIPLIER
+#    Description: Multiply XP gained from all sources
+#    Configuration:
+#      multiplier: 2.0          # Multiply XP by this amount
+#
+# 3. DURABILITY_PROTECTION
+#    Description: Prevent item durability loss
+#    Configuration:
+#      (No additional config needed - automatically protects all items)
+#
+# 4. AUTO_SMELT
+#    Description: Automatically smelt ores when mined
+#    Configuration:
+#      (No additional config needed - automatically smelts all smeltable ores)
+#    Supported Ores:
+#      - Iron Ore → Iron Ingot
+#      - Gold Ore → Gold Ingot
+#      - Copper Ore → Copper Ingot
+#      - Ancient Debris → Netherite Scrap
+#      - Raw Iron/Gold/Copper → Smelted versions
+#
+# 5. BUMPER_HARVEST
+#    Description: Multiply crop yields when harvesting
+#    Configuration:
+#      multiplier: 2.0          # Multiply crop drops by this amount
+#    Supported Crops:
+#      - Wheat, Carrots, Potatoes, Beetroot
+#      - Nether Wart, Sweet Berries, Glow Berries
+#      - Cocoa Beans, Melons, Pumpkins
+#
+# 6. TREE_FELLER
+#    Description: Break entire trees when chopping logs
+#    Configuration:
+#      max-blocks: 100          # Maximum blocks to break per tree
+#    Supported Wood Types:
+#      - Oak, Spruce, Birch, Jungle, Acacia, Dark Oak
+#      - Crimson, Warped, Mangrove, Cherry
+#
+# 7. FISHING_FORTUNE
+#    Description: Improve fishing catches and treasure chances
+#    Configuration:
+#      treasure-chance: 0.3     # Chance to catch treasure (0.0-1.0)
+#      junk-chance: 0.05        # Chance to catch junk (0.0-1.0)
+#
+# 8. TREASURE_HUNT
+#    Description: Spawn a treasure chest with loot at random location
+#    Configuration:
+#      radius: 300              # Search radius for spawn location
+#      container: CHEST         # Container type (CHEST or BARREL)
+#      loot:                    # List of items in chest
+#        - "DIAMOND:5"
+#        - "GOLD_INGOT:16"
+#      broadcast: "message"     # Broadcast message with coordinates
+#
+# Tips:
+#   - Combine auto_smelt with modify_block_drops for ultimate mining
+#   - Use XP multipliers during events to encourage player activity
+#   - Durability protection is great for tool-intensive events
+#   - Tree feller works best with max-blocks set to 100-200
+#   - Treasure hunt creates exciting server-wide competitions
+#   - Use triggers to chain mining bonuses together
+#
+# ============================================================================
+
+events:
+  auto_smelt:
+    enabled: true
+    type: AUTO_SMELT
+    duration: 300
+    announcement: "<gradient:gold:yellow>🔥 Auto Smelt</gradient> <gray>- Ores drop smelted items!"
+    display-name: "<gradient:gold:yellow>🔥 Auto Smelt</gradient>"
+    symbol: "🔥"
+    weight: 12
+    bossbar-color: YELLOW
+    start-sound: BLOCK_FURNACE_FIRE_CRACKLE
+    
+  diamond_fever:
+    enabled: true
+    type: MODIFY_BLOCK_DROPS
+    duration: 240
+    announcement: "<gradient:aqua:blue>💎 Diamond Fever</gradient> <gray>- Increased diamond drops!"
+    display-name: "<gradient:aqua:blue>💎 Diamond Fever</gradient>"
+    symbol: "💎"
+    weight: 8
+    target-blocks:
+      - DIAMOND_ORE
+      - DEEPSLATE_DIAMOND_ORE
+    custom-drops:
+      - material: DIAMOND
+        amount: 3
+        chance: 1.0
+    bossbar-color: BLUE
+    
+  xp_boost:
+    enabled: true
+    type: XP_MULTIPLIER
+    duration: 300
+    announcement: "<gradient:green:aqua>✨ XP Boost</gradient> <gray>- Double XP from all sources!"
+    display-name: "<gradient:green:aqua>✨ XP Boost</gradient>"
+    symbol: "✨"
+    weight: 10
+    multiplier: 2.0
+    bossbar-color: GREEN
+    
+  bumper_harvest:
+    enabled: true
+    type: BUMPER_HARVEST
+    duration: 300
+    announcement: "<gradient:green:#55FF55>🌾 Bumper Harvest</gradient> <gray>- Crops yield more!"
+    display-name: "<gradient:green:#55FF55>🌾 Bumper Harvest</gradient>"
+    symbol: "🌾"
+    weight: 10
+    multiplier: 2.5
+    bossbar-color: GREEN
+    
+  tree_feller:
+    enabled: true
+    type: TREE_FELLER
+    duration: 240
+    announcement: "<gradient:#8B4513:green>🪓 Tree Feller</gradient> <gray>- Chop entire trees at once!"
+    display-name: "<gradient:#8B4513:green>🪓 Tree Feller</gradient>"
+    symbol: "🪓"
+    weight: 10
+    max-blocks: 100
+    bossbar-color: GREEN
+    
+  fishing_fortune:
+    enabled: true
+    type: FISHING_FORTUNE
+    duration: 300
+    announcement: "<gradient:blue:aqua>🎣 Fishing Fortune</gradient> <gray>- Better fishing luck!"
+    display-name: "<gradient:blue:aqua>🎣 Fishing Fortune</gradient>"
+    symbol: "🎣"
+    weight: 10
+    treasure-chance: 0.3
+    junk-chance: 0.05
+    bossbar-color: BLUE
+    
+  durability_shield:
+    enabled: true
+    type: DURABILITY_PROTECTION
+    duration: 300
+    announcement: "<gradient:gray:white>🛡 Durability Shield</gradient> <gray>- Tools don't break!"
+    display-name: "<gradient:gray:white>🛡 Durability Shield</gradient>"
+    symbol: "🛡"
+    weight: 10
+    bossbar-color: WHITE
+    
+  treasure_hunt:
+    enabled: true
+    type: TREASURE_HUNT
+    duration: 600
+    announcement: "<gradient:#FFD700:#FFA500>💰 Treasure Hunt</gradient> <gray>- Find the hidden treasure!"
+    display-name: "<gradient:#FFD700:#FFA500>💰 Treasure Hunt</gradient>"
+    symbol: "💎"
+    weight: 6
+    radius: 300
+    container: CHEST
+    loot:
+      - "DIAMOND:5"
+      - "GOLD_INGOT:16"
+      - "EMERALD:8"
+      - "NETHERITE_SCRAP:2"
+      - "ENCHANTED_GOLDEN_APPLE:1"
+    broadcast: "<gradient:#FFD700:#FFA500>💰 Treasure spawned at <yellow>%x%, %y%, %z%</yellow> in <aqua>%world%</aqua>!"
+    bossbar-color: YELLOW
+
+  stone-fortune:
+    enabled: true
+    type: MODIFY_BLOCK_DROPS
+    duration: 600
+    announcement: "<gradient:gray:white>⛏ Stone Fortune</gradient> <gray>- Stone drops bonus items!"
+    display-name: "<gradient:gray:white>⛏ Stone Fortune</gradient>"
+    symbol: "⛏"
+    weight: 25
+    bossbar-color: WHITE
+    start-sound: BLOCK_STONE_BREAK
+    target-blocks:
+      - STONE
+      - COBBLESTONE
+      - DEEPSLATE
+      - COBBLED_DEEPSLATE
+    custom-drops:
+      - material: COBBLESTONE
+        amount: 1
+        chance: 1.0
+      - material: DIAMOND
+        amount: 1
+        chance: 0.08
+      - material: EMERALD
+        amount: 1
+        chance: 0.04
+      - material: GOLD_INGOT
+        amount: 1
+        chance: 0.06
+
+  coal-bonanza:
+    enabled: true
+    type: MODIFY_BLOCK_DROPS
+    duration: 480
+    announcement: "<gradient:dark_gray:gray>⚫ Coal Bonanza</gradient> <gray>- Quadruple coal!"
+    display-name: "<gradient:dark_gray:gray>⚫ Coal Bonanza</gradient>"
+    symbol: "⚫"
+    weight: 28
+    bossbar-color: WHITE
+    start-sound: BLOCK_STONE_BREAK
+    target-blocks:
+      - COAL_ORE
+      - DEEPSLATE_COAL_ORE
+    custom-drops:
+      - material: COAL
+        amount: 4
+        chance: 1.0
+      - material: DIAMOND
+        amount: 1
+        chance: 0.03
+
+  emerald-rush:
+    enabled: true
+    type: MODIFY_BLOCK_DROPS
+    duration: 360
+    announcement: "<gradient:green:#55FF55>💚 Emerald Rush</gradient> <gray>- Double emeralds!"
+    display-name: "<gradient:green:#55FF55>💚 Emerald Rush</gradient>"
+    symbol: "💚"
+    weight: 10
+    bossbar-color: GREEN
+    start-sound: ENTITY_VILLAGER_YES
+    target-blocks:
+      - EMERALD_ORE
+      - DEEPSLATE_EMERALD_ORE
+    custom-drops:
+      - material: EMERALD
+        amount: 2
+        chance: 1.0
+      - material: EMERALD
+        amount: 2
+        chance: 0.30
+
+  gold-rush:
+    enabled: true
+    type: MODIFY_BLOCK_DROPS
+    duration: 420
+    announcement: "<gradient:gold:yellow>✨ Gold Rush</gradient> <gray>- Triple gold!"
+    display-name: "<gradient:gold:yellow>✨ Gold Rush</gradient>"
+    symbol: "💰"
+    weight: 20
+    bossbar-color: YELLOW
+    start-sound: ENTITY_EXPERIENCE_ORB_PICKUP
+    target-blocks:
+      - GOLD_ORE
+      - DEEPSLATE_GOLD_ORE
+      - NETHER_GOLD_ORE
+    custom-drops:
+      - material: RAW_GOLD
+        amount: 3
+        chance: 1.0
+      - material: GOLD_INGOT
+        amount: 1
+        chance: 0.15
+
+  iron-abundance:
+    enabled: true
+    type: MODIFY_BLOCK_DROPS
+    duration: 540
+    announcement: "<gradient:white:gray>⚙ Iron Abundance</gradient> <gray>- Triple iron!"
+    display-name: "<gradient:white:gray>⚙ Iron Abundance</gradient>"
+    symbol: "⚙"
+    weight: 30
+    bossbar-color: WHITE
+    start-sound: BLOCK_ANVIL_PLACE
+    target-blocks:
+      - IRON_ORE
+      - DEEPSLATE_IRON_ORE
+    custom-drops:
+      - material: RAW_IRON
+        amount: 3
+        chance: 1.0
+
+  double-xp:
+    enabled: true
+    type: XP_MULTIPLIER
+    duration: 600
+    announcement: "<gradient:green:#55FF55>✨ Double XP</gradient> <gray>- Twice the experience!"
+    display-name: "<gradient:green:#55FF55>✨ Double XP</gradient>"
+    symbol: "✨"
+    weight: 30
+    bossbar-color: GREEN
+    start-sound: ENTITY_PLAYER_LEVELUP
+    multiplier: 2.0
+
+  triple-xp:
+    enabled: true
+    type: XP_MULTIPLIER
+    duration: 300
+    announcement: "<gradient:lime:yellow>✨ Triple XP</gradient> <gray>- Triple experience!"
+    display-name: "<gradient:lime:yellow>✨ Triple XP</gradient>"
+    symbol: "✨"
+    weight: 15
+    bossbar-color: PINK
+    start-sound: ENTITY_PLAYER_LEVELUP
+    multiplier: 3.0
+
+  mega-xp:
+    enabled: true
+    type: XP_MULTIPLIER
+    duration: 180
+    announcement: "<gradient:yellow:gold>✨ MEGA XP</gradient> <gray>- 5x experience!"
+    display-name: "<gradient:yellow:gold>✨ MEGA XP</gradient>"
+    symbol: "✨"
+    weight: 8
+    bossbar-color: PURPLE
+    start-sound: UI_TOAST_CHALLENGE_COMPLETE
+    multiplier: 5.0
+
+  unbreakable-tools:
+    enabled: true
+    type: DURABILITY_PROTECTION
+    duration: 480
+    announcement: "<gradient:blue:aqua>🛡 Unbreakable Tools</gradient> <gray>- Tools never break!"
+    display-name: "<gradient:blue:aqua>🛡 Unbreakable Tools</gradient>"
+    symbol: "🛡"
+    weight: 25
+    bossbar-color: BLUE
+    start-sound: BLOCK_ANVIL_USE
+
+  eternal-equipment:
+    enabled: true
+    type: DURABILITY_PROTECTION
+    duration: 360
+    announcement: "<gradient:yellow:gold>⚡ Eternal Equipment</gradient> <gray>- No durability loss!"
+    display-name: "<gradient:yellow:gold>⚡ Eternal Equipment</gradient>"
+    symbol: "⚡"
+    weight: 22
+    bossbar-color: YELLOW
+    start-sound: ITEM_ARMOR_EQUIP_DIAMOND
+
+  instant-smelt:
+    enabled: true
+    type: AUTO_SMELT
+    duration: 480
+    announcement: "<gradient:red:#FF5500>🔥 Instant Smelt</gradient> <gray>- Ores drop smelted!"
+    display-name: "<gradient:red:#FF5500>🔥 Instant Smelt</gradient>"
+    symbol: "🔥"
+    weight: 28
+    bossbar-color: RED
+    start-sound: BLOCK_FURNACE_FIRE_CRACKLE
+
+  furnace-blessing:
+    enabled: true
+    type: AUTO_SMELT
+    duration: 600
+    announcement: "<gradient:gold:yellow>⚒ Furnace Blessing</gradient> <gray>- Auto-smelt active!"
+    display-name: "<gradient:gold:yellow>⚒ Furnace Blessing</gradient>"
+    symbol: "⚒"
+    weight: 25
+    bossbar-color: YELLOW
+    start-sound: BLOCK_BLASTFURNACE_FIRE_CRACKLE
+
+  # MiniMessage showcase event
+  golden-hour:
+    enabled: false
+    type: XP_MULTIPLIER
+    duration: 600
+    announcement: "<gradient:gold:yellow>✨ Golden Hour - Triple XP!</gradient>"
+    display-name: "<gradient:gold:yellow><bold>✨ Golden Hour</bold></gradient>"
+    symbol: "✨"
+    weight: 15
+    bossbar-color: YELLOW
+    start-sound: BLOCK_BELL_USE
+    multiplier: 3.0
